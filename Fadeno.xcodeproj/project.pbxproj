@@ -1,0 +1,493 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4328D9A78900FB673A /* FadenoApp.swift */; };
+		A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4528D9A78900FB673A /* ContentView.swift */; };
+		A85C4E4828D9A78B00FB673A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A85C4E4728D9A78B00FB673A /* Assets.xcassets */; };
+		A85C4E4B28D9A78B00FB673A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A85C4E4A28D9A78B00FB673A /* Preview Assets.xcassets */; };
+		A85C4E5D28DA305C00FB673A /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E5C28DA305C00FB673A /* DIContainer.swift */; };
+		A85C4E6928DA366D00FB673A /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E6828DA366D00FB673A /* UserTask.swift */; };
+		A85C4E6B28DAB34000FB673A /* MarkdownTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E6A28DAB34000FB673A /* MarkdownTestView.swift */; };
+		A85C4E8128DAC9F200FB673A /* Override.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E8028DAC9F200FB673A /* Override.swift */; };
+		A85C4E8D28DAED9600FB673A /* UIComponent in Frameworks */ = {isa = PBXBuildFile; productRef = A85C4E8C28DAED9600FB673A /* UIComponent */; };
+		A85C4E8F28DAF21A00FB673A /* MarkdownTest2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E8E28DAF21A00FB673A /* MarkdownTest2View.swift */; };
+		A85C4E9528DB20E100FB673A /* Markdown in Frameworks */ = {isa = PBXBuildFile; productRef = A85C4E9428DB20E100FB673A /* Markdown */; };
+		A85C4E9728DB217A00FB673A /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E9628DB217A00FB673A /* Mock.swift */; };
+		A86FEB3428E459B800E42FEE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3328E459B800E42FEE /* HomeView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A85C4E4028D9A78900FB673A /* Fadeno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fadeno.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A85C4E4328D9A78900FB673A /* FadenoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadenoApp.swift; sourceTree = "<group>"; };
+		A85C4E4528D9A78900FB673A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A85C4E4728D9A78B00FB673A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A85C4E4A28D9A78B00FB673A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A85C4E4C28D9A78B00FB673A /* Fadeno.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fadeno.entitlements; sourceTree = "<group>"; };
+		A85C4E5C28DA305C00FB673A /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		A85C4E6828DA366D00FB673A /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
+		A85C4E6A28DAB34000FB673A /* MarkdownTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTestView.swift; sourceTree = "<group>"; };
+		A85C4E8028DAC9F200FB673A /* Override.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Override.swift; sourceTree = "<group>"; };
+		A85C4E8E28DAF21A00FB673A /* MarkdownTest2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownTest2View.swift; sourceTree = "<group>"; };
+		A85C4E9628DB217A00FB673A /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
+		A86FEB3328E459B800E42FEE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A85C4E3D28D9A78900FB673A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A85C4E8D28DAED9600FB673A /* UIComponent in Frameworks */,
+				A85C4E9528DB20E100FB673A /* Markdown in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A85C4E3728D9A78900FB673A = {
+			isa = PBXGroup;
+			children = (
+				A85C4E4228D9A78900FB673A /* Fadeno */,
+				A85C4E4128D9A78900FB673A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A85C4E4128D9A78900FB673A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A85C4E4028D9A78900FB673A /* Fadeno.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A85C4E4228D9A78900FB673A /* Fadeno */ = {
+			isa = PBXGroup;
+			children = (
+				A85C4E4328D9A78900FB673A /* FadenoApp.swift */,
+				A85C4E5428DA174100FB673A /* UI */,
+				A85C4E5228DA173600FB673A /* Internal */,
+				A85C4E5328DA173B00FB673A /* Resource */,
+			);
+			path = Fadeno;
+			sourceTree = "<group>";
+		};
+		A85C4E5228DA173600FB673A /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				A85C4E7E28DAC9D300FB673A /* Util */,
+				A85C4E5A28DA301700FB673A /* CoreData */,
+				A85C4E5528DA2FEE00FB673A /* System */,
+				A85C4E5728DA300600FB673A /* Damain */,
+				A85C4E5B28DA301E00FB673A /* AppState */,
+				A85C4E5828DA300B00FB673A /* Interactor */,
+				A85C4E5928DA301000FB673A /* Repository */,
+				A85C4E5628DA2FFA00FB673A /* Model */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		A85C4E5328DA173B00FB673A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A85C4E4728D9A78B00FB673A /* Assets.xcassets */,
+				A85C4E4C28D9A78B00FB673A /* Fadeno.entitlements */,
+				A85C4E4A28D9A78B00FB673A /* Preview Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		A85C4E5428DA174100FB673A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A85C4E4528D9A78900FB673A /* ContentView.swift */,
+				A86FEB3328E459B800E42FEE /* HomeView.swift */,
+				A85C4E6A28DAB34000FB673A /* MarkdownTestView.swift */,
+				A85C4E8E28DAF21A00FB673A /* MarkdownTest2View.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		A85C4E5528DA2FEE00FB673A /* System */ = {
+			isa = PBXGroup;
+			children = (
+				A85C4E5C28DA305C00FB673A /* DIContainer.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		A85C4E5628DA2FFA00FB673A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A85C4E6828DA366D00FB673A /* UserTask.swift */,
+				A85C4E9628DB217A00FB673A /* Mock.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A85C4E5728DA300600FB673A /* Damain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Damain;
+			sourceTree = "<group>";
+		};
+		A85C4E5828DA300B00FB673A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		A85C4E5928DA301000FB673A /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		A85C4E5A28DA301700FB673A /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		A85C4E5B28DA301E00FB673A /* AppState */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AppState;
+			sourceTree = "<group>";
+		};
+		A85C4E7E28DAC9D300FB673A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				A85C4E8028DAC9F200FB673A /* Override.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A85C4E3F28D9A78900FB673A /* Fadeno */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A85C4E4F28D9A78B00FB673A /* Build configuration list for PBXNativeTarget "Fadeno" */;
+			buildPhases = (
+				A85C4E3C28D9A78900FB673A /* Sources */,
+				A85C4E3D28D9A78900FB673A /* Frameworks */,
+				A85C4E3E28D9A78900FB673A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Fadeno;
+			packageProductDependencies = (
+				A85C4E8C28DAED9600FB673A /* UIComponent */,
+				A85C4E9428DB20E100FB673A /* Markdown */,
+			);
+			productName = Fadeno;
+			productReference = A85C4E4028D9A78900FB673A /* Fadeno.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A85C4E3828D9A78900FB673A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					A85C4E3F28D9A78900FB673A = {
+						CreatedOnToolsVersion = 14.0;
+					};
+				};
+			};
+			buildConfigurationList = A85C4E3B28D9A78900FB673A /* Build configuration list for PBXProject "Fadeno" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A85C4E3728D9A78900FB673A;
+			packageReferences = (
+				A85C4E8B28DAED9600FB673A /* XCRemoteSwiftPackageReference "UIComponent" */,
+				A85C4E9328DB20E100FB673A /* XCRemoteSwiftPackageReference "swiftui-markdown" */,
+			);
+			productRefGroup = A85C4E4128D9A78900FB673A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A85C4E3F28D9A78900FB673A /* Fadeno */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A85C4E3E28D9A78900FB673A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A85C4E4B28D9A78B00FB673A /* Preview Assets.xcassets in Resources */,
+				A85C4E4828D9A78B00FB673A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A85C4E3C28D9A78900FB673A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A86FEB3428E459B800E42FEE /* HomeView.swift in Sources */,
+				A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */,
+				A85C4E5D28DA305C00FB673A /* DIContainer.swift in Sources */,
+				A85C4E6B28DAB34000FB673A /* MarkdownTestView.swift in Sources */,
+				A85C4E8F28DAF21A00FB673A /* MarkdownTest2View.swift in Sources */,
+				A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */,
+				A85C4E6928DA366D00FB673A /* UserTask.swift in Sources */,
+				A85C4E8128DAC9F200FB673A /* Override.swift in Sources */,
+				A85C4E9728DB217A00FB673A /* Mock.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A85C4E4D28D9A78B00FB673A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A85C4E4E28D9A78B00FB673A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A85C4E5028D9A78B00FB673A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Fadeno/Resource/Fadeno.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Fadeno/Resource\"";
+				DEVELOPMENT_TEAM = Y366CJ66L6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanunyang.Fadeno;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A85C4E5128D9A78B00FB673A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Fadeno/Resource/Fadeno.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Fadeno/Resource\"";
+				DEVELOPMENT_TEAM = Y366CJ66L6;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanunyang.Fadeno;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A85C4E3B28D9A78900FB673A /* Build configuration list for PBXProject "Fadeno" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A85C4E4D28D9A78B00FB673A /* Debug */,
+				A85C4E4E28D9A78B00FB673A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A85C4E4F28D9A78B00FB673A /* Build configuration list for PBXNativeTarget "Fadeno" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A85C4E5028D9A78B00FB673A /* Debug */,
+				A85C4E5128D9A78B00FB673A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A85C4E8B28DAED9600FB673A /* XCRemoteSwiftPackageReference "UIComponent" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yanun0323/UIComponent.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		A85C4E9328DB20E100FB673A /* XCRemoteSwiftPackageReference "swiftui-markdown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jaywcjlove/swiftui-markdown.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A85C4E8C28DAED9600FB673A /* UIComponent */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A85C4E8B28DAED9600FB673A /* XCRemoteSwiftPackageReference "UIComponent" */;
+			productName = UIComponent;
+		};
+		A85C4E9428DB20E100FB673A /* Markdown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A85C4E9328DB20E100FB673A /* XCRemoteSwiftPackageReference "swiftui-markdown" */;
+			productName = Markdown;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A85C4E3828D9A78900FB673A /* Project object */;
+}
