@@ -1,25 +1,11 @@
-//
-//  DIContainer.swift
-//  Fadeno
-//
-//  Created by YanunYang on 2022/9/21.
-//
-
 import Foundation
 
 class DIContainer: ObservableObject {
-    @Published var appState = AppState()
-    var interactor = Interactor()
-}
-
-extension DIContainer {
-    class AppState: ObservableObject {
-        
-    }
-}
-
-extension DIContainer {
-    class Interactor {
-        
+    @Published var appState: AppState
+    @Published var interactor: Interactor
+    
+    init(appState: AppState, interactor: Interactor) {
+        self.appState = appState
+        self.interactor = interactor
     }
 }

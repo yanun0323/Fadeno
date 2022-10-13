@@ -1,0 +1,8 @@
+/*
+  Chinese Traditional
+*/
+"todo" = "待辦";
+"normal" = "進行中";
+"urgent" = "緊急";
+"custom" = "自訂";
+"archive" = "封存";

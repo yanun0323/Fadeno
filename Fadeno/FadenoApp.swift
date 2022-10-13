@@ -6,12 +6,28 @@
 //
 
 import SwiftUI
+import UIComponent
 
 @main
 struct FadenoApp: App {
+    private var container: DIContainer
+    
+    init() {
+        let appState = AppState(
+            shared: AppState.SharedState()
+        )
+        
+        let interactor = Interactor(
+            global: GlobalInteractor(appState: appState)
+        )
+        
+        self.container = DIContainer(appState: appState, interactor: interactor)
+    }
+    
     var body: some Scene {
         WindowGroup {
-            MarkdownTestView()
+            ContentView()
+                .inject(DIContainer.preview)
         }
         .commands {
                 CommandMenu("Edit") {

@@ -1,21 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "swiftui-markdown",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/jaywcjlove/swiftui-markdown.git",
-      "state" : {
-        "branch" : "main",
-        "revision" : "35bb5e7b9a6e017c4a7612f815fb43120aa236ef"
-      }
-    },
-    {
       "identity" : "uicomponent",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yanun0323/UIComponent.git",
       "state" : {
         "branch" : "master",
-        "revision" : "c55b2d6ff2d9892ea3afb215ee649ea3a6984739"
+        "revision" : "bd179d57161c48a51629c066f6cce73716b1f2dd"
       }
     }
   ],

@@ -1,11 +1,5 @@
-//
-//  Override.swift
-//  Fadeno
-//
-//  Created by YanunYang on 2022/9/21.
-//
-
 import AppKit
+import SwiftUI
 
 extension NSTableView {
     open override func viewDidMoveToWindow() {
@@ -22,7 +16,7 @@ extension NSTextView {
     open override var frame: CGRect {
         didSet {
             backgroundColor = .clear
-            drawsBackground = true
+            drawsBackground = false
             enclosingScrollView?.drawsBackground = false
             enclosingScrollView?.hasVerticalScroller = false
             enclosingScrollView?.hasHorizontalScroller = false

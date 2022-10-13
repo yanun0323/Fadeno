@@ -1,0 +1,8 @@
+/* 
+  English
+*/
+"todo" = "Todo";
+"normal" = "Normal";
+"urgent" = "Urgent";
+"custom" = "Custom";
+"archive" = "Archive";
