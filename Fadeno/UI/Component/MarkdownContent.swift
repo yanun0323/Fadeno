@@ -32,7 +32,7 @@ struct MarkdownContent<V>: View where V: View{
             }
         }
         .onReceive(container.objectWillChange) { _ in
-            mdView = Markdown(container.appState.userdata.currentTask.content, .dark).id(Date.now) as! V
+            mdView = Markdown(container.appstate.userdata.currentTask.content, .dark).id(Date.now) as! V
         }
     }
 }
@@ -41,8 +41,8 @@ struct MarkdownContent<V>: View where V: View{
 extension MarkdownContent {
     var titleBlock: some View {
         HStack {
-            Block(width: 5, height: 30, color: container.appState.userdata.currentTask.type.color)
-            Text(container.appState.userdata.currentTask.title)
+            Block(width: 5, height: 30, color: container.appstate.userdata.currentTask.type.color)
+            Text(container.appstate.userdata.currentTask.title)
                 .font(.title)
             Spacer()
         }
@@ -50,7 +50,7 @@ extension MarkdownContent {
     
     var mdBlock: some View {
         ZStack {
-            TextEditor(text: $container.appState.userdata.currentTask.content)
+            TextEditor(text: $container.appstate.userdata.currentTask.content)
                 .font(.title3)
                 .focused($focus)
                 .opacity(edit ? 1 : 0)

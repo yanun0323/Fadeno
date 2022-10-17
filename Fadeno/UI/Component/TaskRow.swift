@@ -20,10 +20,6 @@ struct TaskRow: View {
     /* timer */
     @State private var timer: CacheTimer?
     
-    var usertaskEscape: Usertask {
-        usertask
-    }
-    
     init(usertask: Usertask, isNew: Bool, isPopover: Bool = false) {
         self._usertask = State(initialValue: usertask)
         self._isPopover = State(initialValue: isPopover)
@@ -44,7 +40,7 @@ struct TaskRow: View {
                 .frame(width: 5)
                 .padding(.vertical, 1)
                 .opacity(complete ? 0.2 : 1)
-            
+            DebugBlock
             VStack(alignment: .leading, spacing: 0) {
                 TitleRowBlock
                 NoteRowBlock
@@ -69,7 +65,7 @@ struct TaskRow: View {
             }
             timer = CacheTimer(countdown: 20, timeInterval: 0.1, action: {
                 print("usertask saved, \(usertask.title)")
-                container.interactor.usertaskInteractor.UpdateUsertask(usertaskEscape)
+                container.interactor.usertask.UpdateUsertask(usertask)
                 container.Publish()
             })
             timer?.Init()
@@ -80,6 +76,13 @@ struct TaskRow: View {
 // MARK: View Block
 
 extension TaskRow {
+    var DebugBlock: some View {
+        Block(width: 20, height: 20, color: .gray)
+            .overlay {
+                Text(usertask.order.description)
+            }
+    }
+    
     var TitleRowBlock: some View {
         HStack(spacing: 0) {
             Block(width: 5)
@@ -149,7 +152,7 @@ extension TaskRow {
             withAnimation {
                 complete.toggle()
                 usertask.complete = complete
-                container.interactor.usertaskInteractor.UpdateUsertask(usertask)
+                container.interactor.usertask.UpdateUsertask(usertask)
                 container.Publish()
             }
         } content: {
@@ -161,7 +164,7 @@ extension TaskRow {
     
     var PopoverTrigerBlock: some View {
         ButtonCustom(width: 25, height: 25, radius: 5) {
-            if container.appState.usersetting.popoverClick {
+            if container.appstate.usersetting.popoverClick {
                 detail = true
             }
         } content: {
@@ -169,17 +172,17 @@ extension TaskRow {
                 .foregroundColor(.primary50.opacity( complete ? 0.3 : 0.75))
         }
         .onHover(perform: { value in
-            if container.appState.userdata.page == -1 {
+            if container.appstate.userdata.page == -1 {
                 detail = false
                 return
             }
             
-            if container.appState.usersetting.popoverClick {
+            if container.appstate.usersetting.popoverClick {
                 detail = detail
                 return
             }
             
-            if container.appState.usersetting.popoverAutoClose {
+            if container.appstate.usersetting.popoverAutoClose {
                 detail = value
                 return
             }
@@ -202,7 +205,7 @@ extension TaskRow {
                     }))
                     .font(.system(size: 14, weight: .thin, design: .default))
                     .background(.clear)
-                    .frame(width: CGFloat(container.appState.usersetting.popoverWidth),
+                    .frame(width: CGFloat(container.appstate.usersetting.popoverWidth),
                            height: CGFloat((content.filter { $0 == "\n" }.count+1) * (14+3)),
                            alignment: .leading)
             }
@@ -212,15 +215,15 @@ extension TaskRow {
     }
     
     var ContentPageBlock: some View {
-        ButtonCustom(width: 25, height: 25, color: container.appState.userdata.currentTask.id == usertask.id ? .blue : .transparent, radius: 3) {
+        ButtonCustom(width: 25, height: 25, color: container.appstate.userdata.currentTask.id == usertask.id ? .blue : .transparent, radius: 3) {
             withAnimation {
-                container.appState.userdata.currentTask = usertask
+                container.appstate.userdata.currentTask = usertask
                 container.Publish()
             }
         } content: {
             Image(systemName: "chevron.right")
                 .font(.title2)
-                .foregroundColor(container.appState.userdata.currentTask.id == usertask.id ? .white : .primary50.opacity( complete ? 0.3 : 0.75))
+                .foregroundColor(container.appstate.userdata.currentTask.id == usertask.id ? .white : .primary50.opacity( complete ? 0.3 : 0.75))
         }
 
     }

@@ -1,16 +1,16 @@
 import Foundation
 
 class DIContainer: ObservableObject {
-    var appState: AppState {
+    var appstate: AppState {
         willSet {
             objectWillChange.send()
         }
     }
     var interactor: Interactor
     
-    init(appState: AppState) {
-        self.appState = appState
-        self.interactor = Interactor(appState)
+    init(appstate: AppState) {
+        self.appstate = appstate
+        self.interactor = Interactor(appstate)
     }
 }
 
@@ -23,9 +23,9 @@ extension DIContainer {
 }
 
 struct Interactor {
-    var usertaskInteractor: UsertaskInteractor
+    var usertask: UsertaskInteractor
     
-    init(_ appState: AppState) {
-        self.usertaskInteractor = UsertaskInteractor(appState: appState)
+    init(_ appstate: AppState) {
+        self.usertask = UsertaskInteractor(appstate: appstate)
     }
 }

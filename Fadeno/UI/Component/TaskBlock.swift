@@ -15,7 +15,7 @@ struct TaskBlock: View {
     @State private var hovered: Bool = false
     
     var tasks: [Usertask] {
-        self.container.appState.userdata.tasks.filter({ $0.type == self.type })
+        self.container.appstate.userdata.tasks.filter({ $0.type == self.type }).sorted(by: { $0.order < $1.order })
     }
     
     let type: Usertask.Tasktype
@@ -31,8 +31,8 @@ struct TaskBlock: View {
 extension TaskBlock {
     var count: Double {
         var c: Double = 4
-        if container.appState.usersetting.hideBlock { c = 3 }
-        if container.appState.usersetting.hideEmergency { c = 2 }
+        if container.appstate.usersetting.hideBlock { c = 3 }
+        if container.appstate.usersetting.hideEmergency { c = 2 }
         return c
     }
 }
@@ -57,7 +57,7 @@ extension TaskBlock {
                 }
                 .frame(
                     width: 25,
-                    height: container.appState.usersetting.windowsHeight/count - 65,
+                    height: container.appstate.usersetting.windowsHeight/count - 65,
                     alignment: .topLeading
                 )
                 .clipped()
@@ -193,35 +193,23 @@ extension TaskBlock {
 extension TaskBlock {
     func InserAction(_ index: Int, _ providers: [NSItemProvider]) -> Void {
         for item in providers {
-            item.loadObject(ofClass: SwiftUIListReorder.self) { recoder, error in
-//                if let error = error {
-//                    print(error)
-//                }
-//                guard let recoder = recoder as? SwiftUIListReorder else { return }
-//                    var destination = index
-//                    if tasks.contains(where: { $0.id == recoder.userTask.id })
-//                        && index >= tasks.count{
-//                        destination = tasks.count - 1
-//                    }
-                    
-//                guard let removed = RemoveFromTask(id: recoder.userTask.id) else {
-//                    return
-//                }
-//
-//                if tasks.isEmpty {
-//                    DispatchQueue.main.async {
-//                        tasks.append(removed)
-//                        CreateDatabaseFrom(removed)
-//                        UpdateDatabase()
-//                    }
-//                } else {
-//                    DispatchQueue.main.async {
-//                        tasks.insert(removed, at: destination)
-//                        CreateDatabaseFrom(removed)
-//                        UpdateDatabase()
-//                    }
-//                }
+            item.loadObject(ofClass: SwiftUIListReorder.self) { recorder, error in
+                if let error = error {
+                    print(error)
+                }
+                guard let recorder = recorder as? SwiftUIListReorder else { return }
+                var destination = index
+                if destination >= tasks.count {
+                    destination = recorder.usertask.type == type ? tasks.count - 1 : tasks.count
+                }
+                print("move \(recorder.usertask.title) to \(destination)")
                 
+                container.interactor.usertask.RemoveUsertask(recorder.usertask)
+                container.Publish()
+                recorder.usertask.type = type
+                recorder.usertask.order = destination
+                container.interactor.usertask.InsertUsertask(recorder.usertask)
+                container.Publish()
             }
         }
     }

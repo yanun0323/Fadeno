@@ -35,7 +35,7 @@ struct TaskListView: View {
             .background(.background)
             .frame(maxWidth: 400)
             Separator(direction: .vertical, color: .section, size: 1)
-            MarkdownContent(mdView: Markdown(container.appState.userdata.currentTask.content).id(Date.now))
+            MarkdownContent(mdView: Markdown(container.appstate.userdata.currentTask.content).id(Date.now))
         }
     }
 }

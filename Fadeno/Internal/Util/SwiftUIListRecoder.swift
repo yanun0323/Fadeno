@@ -22,9 +22,9 @@ final class SwiftUIListReorder: NSObject, NSItemProviderReading, NSItemProviderW
         return nil
     }
     
-    var userTask: Usertask
+    var usertask: Usertask
     init(_ values: Usertask) {
-        self.userTask = values
+        self.usertask = values
     }
     
 }
