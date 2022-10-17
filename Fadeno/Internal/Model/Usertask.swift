@@ -1,17 +1,17 @@
 import Foundation
 import SwiftUI
 
-struct UserTask {
-    var id: UUID
+final class Usertask {
+    var id: UUID = UUID()
     var order: Int
     var title: String
     var outline: String
     var content: String
-    var type: TaskType
+    var type: Tasktype
     var complete: Bool
     
     init(_ order: Int, _ title: String = "", _ outline: String = "", _ content: String = "",
-         _ complete: Bool = false, _ type: TaskType = .todo) {
+         _ complete: Bool = false, _ type: Tasktype = .todo) {
         self.id = UUID()
         self.order = order
         self.title = title
@@ -21,21 +21,19 @@ struct UserTask {
         self.complete = false
     }
     
-    init(_ mo: UserTaskMo) {
+    init(_ mo: UsertaskMo) {
         self.id = mo.id ?? UUID()
         self.order = Int(mo.order)
         self.title = mo.title ?? ""
         self.outline = mo.outline ?? ""
         self.content = mo.content ?? ""
-        self.type = TaskType(rawValue: Int(mo.type)) ?? .todo
+        self.type = Tasktype(rawValue: Int(mo.type)) ?? .todo
         self.complete = mo.complete
     }
 }
 
-extension UserTask: Identifiable {}
-
 // MARK: Codable
-extension UserTask: Codable {
+extension Usertask: Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
@@ -49,6 +47,7 @@ extension UserTask: Codable {
     
     enum CodingKeys: CodingKey {
         case id
+        case mo
         case order
         case title
         case outline
@@ -57,36 +56,59 @@ extension UserTask: Codable {
         case complete
     }
     
-    init(from decoder: Decoder) throws {
+    convenience init(from decoder: Decoder) throws {
+        self.init(0)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.order = try container.decode(Int.self, forKey: .order)
         self.title = try container.decode(String.self, forKey: .title)
         self.outline = try container.decode(String.self, forKey: .outline)
         self.content = try container.decode(String.self, forKey: .content)
-        self.type = try container.decode(TaskType.self, forKey: .type)
+        self.type = try container.decode(Tasktype.self, forKey: .type)
         self.complete = try container.decode(Bool.self, forKey: .complete)
     }
 }
 
-extension UserTask: Equatable {}
+extension Usertask: Identifiable {}
 
-extension UserTask {
-    static var empty = UserTask(0)
+extension Usertask: Equatable {
+    static func == (lhs: Usertask, rhs: Usertask) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
-extension UserTask {}
+extension Usertask {
+    static var empty = Usertask(0)
+}
 
-// MARK: TaskType
-extension UserTask {
-    enum TaskType: Int {
+// MARK: Function
+extension Usertask {
+    func Update(_ task: Usertask) {
+        self.order = task.order
+        self.title = task.title
+        self.outline = task.outline
+        self.content = task.content
+        self.type = task.type
+        self.complete = task.complete
+    }
+}
+
+// MARK: Tasktype
+extension Usertask {
+    enum Tasktype: Int {
     case todo, normal, urgent, archive, custom
     }
 }
 
-extension UserTask.TaskType: Codable {}
+extension Usertask.Tasktype: Codable {}
+extension Usertask.Tasktype: CaseIterable {}
+extension Usertask.Tasktype: Identifiable {
+    var id: Int {
+        self.rawValue
+    }
+}
 
-extension UserTask.TaskType {
+extension Usertask.Tasktype {
     var color: Color {
         switch self {
         case .todo:
@@ -117,3 +139,5 @@ extension UserTask.TaskType {
         }
     }
 }
+
+

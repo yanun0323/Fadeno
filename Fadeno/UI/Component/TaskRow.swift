@@ -6,23 +6,44 @@ import UIComponent
 struct TaskRow: View {
     @EnvironmentObject private var container: DIContainer
     @Environment(\.openURL) private var openURL
-    @State var userTask: UserTask
-    @State var title: String
-    @State var outline: String
-    @State var content: String
-    @State var isPopover: Bool = false
+    @State private var usertask: Usertask
+    @State private var isPopover: Bool
     
-    /* cache */
+    @State private var title: String = ""
+    @State private var outline: String = ""
+    @State private var content: String = ""
+    @State private var complete = false
+    
     @State private var detail = false
     @State private var linked = false
+    
+    /* timer */
+    @State private var timer: CacheTimer?
+    
+    var usertaskEscape: Usertask {
+        usertask
+    }
+    
+    init(usertask: Usertask, isNew: Bool, isPopover: Bool = false) {
+        self._usertask = State(initialValue: usertask)
+        self._isPopover = State(initialValue: isPopover)
+        self._complete = State(initialValue: usertask.complete)
+        self.timer = nil
+        
+        if !isNew {
+            self._title = State(initialValue: usertask.title)
+            self._outline = State(initialValue: usertask.outline)
+            self._content = State(initialValue: usertask.content)
+        }
+    }
     
     var body: some View {
         HStack(spacing: 0) {
             Rectangle()
-                .foregroundColor(userTask.type.color)
+                .foregroundColor(usertask.type.color)
                 .frame(width: 5)
                 .padding(.vertical, 1)
-                .opacity(userTask.complete ? 0.2 : 1)
+                .opacity(complete ? 0.2 : 1)
             
             VStack(alignment: .leading, spacing: 0) {
                 TitleRowBlock
@@ -33,6 +54,7 @@ struct TaskRow: View {
             if isPopover {
                 PopoverTrigerBlock
             } else {
+                Block(width: 10, height: 10)
                 ContentPageBlock
             }
         }
@@ -42,6 +64,15 @@ struct TaskRow: View {
         .background(.background)
         .onAppear {
             linked = IsLink(outline)
+            if timer != nil {
+                return
+            }
+            timer = CacheTimer(countdown: 20, timeInterval: 0.1, action: {
+                print("usertask saved, \(usertask.title)")
+                container.interactor.usertaskInteractor.UpdateUsertask(usertaskEscape)
+                container.Publish()
+            })
+            timer?.Init()
         }
     }
 }
@@ -57,18 +88,14 @@ extension TaskRow {
                 get: {
                     title
                 }, set: { value in
-                    if userTask.title != value {
-                        title = value
-                        userTask.title = value
-                        #if DEBUG
-                        print("Changed!")
-                        #endif
-                    }
+                    title = value
+                    usertask.title = title
+                    timer?.Refresh()
                 }))
                 .font(.system(size: 14, weight: .light, design: .default))
                 .lineLimit(1)
                 .textFieldStyle(.plain)
-                .disabled(userTask.complete)
+                .disabled(complete)
             
             Spacer()
         }
@@ -80,7 +107,7 @@ extension TaskRow {
             
             if linked {
                 ButtonCustom(width: 30, height: 11, color: .primary25, radius: 1) {
-                    let str = userTask.outline.split(separator: " ").first(where: { $0.contains("https://") })
+                    let str = usertask.outline.split(separator: " ").first(where: { $0.contains("https://") })
                     guard let separated = str?.split(separator: "/", maxSplits: 1, omittingEmptySubsequences: true) else { return }
                     if separated.isEmpty { return }
                     guard var component = URLComponents(string: separated[0].description) else { return }
@@ -103,57 +130,56 @@ extension TaskRow {
                 get: {
                     outline
                 }, set: { value in
-                    if userTask.outline != value {
-                        outline = value
-                        userTask.outline = value
-                        linked = IsLink(value)
-                        #if DEBUG
-                        print("Changed!")
-                        #endif
-                    }
+                    outline = value
+                    usertask.outline = outline
+                    linked = IsLink(value)
+                    timer?.Refresh()
                 }))
                 .foregroundColor(.primary75)
                 .font(.system(size: 10, weight: .thin, design: .default))
                 .frame(height: 10)
                 .lineLimit(1)
                 .textFieldStyle(.plain)
-                .disabled(userTask.complete)
+                .disabled(complete)
         }
     }
     
     var CompleteBlock: some View {
         ButtonCustom(width: 25, height: 25, radius: 5) {
             withAnimation {
-                userTask.complete.toggle()
+                complete.toggle()
+                usertask.complete = complete
+                container.interactor.usertaskInteractor.UpdateUsertask(usertask)
+                container.Publish()
             }
         } content: {
-            Image(systemName: userTask.complete ? "checkmark.circle.fill" : "circle")
+            Image(systemName: complete ? "checkmark.circle.fill" : "circle")
                 .font(.title3)
-                .foregroundColor(.primary50.opacity( userTask.complete ? 0.3 : 0.75))
+                .foregroundColor(.primary50.opacity( complete ? 0.3 : 0.75))
         }
     }
     
     var PopoverTrigerBlock: some View {
         ButtonCustom(width: 25, height: 25, radius: 5) {
-            if container.appState.userSetting.popoverClick {
+            if container.appState.usersetting.popoverClick {
                 detail = true
             }
         } content: {
             Image(systemName: content.isEmpty ?  "bubble.middle.bottom" : "bubble.middle.bottom.fill")
-                .foregroundColor(.primary50.opacity( userTask.complete ? 0.3 : 0.75))
+                .foregroundColor(.primary50.opacity( complete ? 0.3 : 0.75))
         }
         .onHover(perform: { value in
-            if container.appState.shared.page == -1 {
+            if container.appState.userdata.page == -1 {
                 detail = false
                 return
             }
             
-            if container.appState.userSetting.popoverClick {
+            if container.appState.usersetting.popoverClick {
                 detail = detail
                 return
             }
             
-            if container.appState.userSetting.popoverAutoClose {
+            if container.appState.usersetting.popoverAutoClose {
                 detail = value
                 return
             }
@@ -162,13 +188,13 @@ extension TaskRow {
         })
         .popover(isPresented: $detail, arrowEdge: .trailing) {
             ZStack {
-                TextEditor(text: userTask.complete ? .constant(content) : Binding(
+                TextEditor(text: complete ? .constant(content) : Binding(
                     get: {
                         content
                     }, set: { value in
                         content = value
-                        if userTask.content != value {
-                            userTask.content = value
+                        if usertask.content != value {
+                            usertask.content = value
                             #if DEBUG
                             print("Changed!")
                             #endif
@@ -176,7 +202,7 @@ extension TaskRow {
                     }))
                     .font(.system(size: 14, weight: .thin, design: .default))
                     .background(.clear)
-                    .frame(width: CGFloat(container.appState.userSetting.popoverWidth),
+                    .frame(width: CGFloat(container.appState.usersetting.popoverWidth),
                            height: CGFloat((content.filter { $0 == "\n" }.count+1) * (14+3)),
                            alignment: .leading)
             }
@@ -186,13 +212,15 @@ extension TaskRow {
     }
     
     var ContentPageBlock: some View {
-        ButtonCustom(width: 40, height: 40) {
+        ButtonCustom(width: 25, height: 25, color: container.appState.userdata.currentTask.id == usertask.id ? .blue : .transparent, radius: 3) {
             withAnimation {
-                container.appState.shared.currentTask = userTask
-                print("current user task: \(container.appState.shared.currentTask.title)")
+                container.appState.userdata.currentTask = usertask
+                container.Publish()
             }
         } content: {
             Image(systemName: "chevron.right")
+                .font(.title2)
+                .foregroundColor(container.appState.userdata.currentTask.id == usertask.id ? .white : .primary50.opacity( complete ? 0.3 : 0.75))
         }
 
     }
@@ -209,10 +237,10 @@ extension TaskRow {
 struct TaskRow_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            Row(UserTask.preview.urgent)
-            Row(UserTask.preview.archive)
-            Row(UserTask.preview.normal)
-            Row(UserTask.preview.todo)
+            Row(Usertask.preview.urgent)
+            Row(Usertask.preview.archive)
+            Row(Usertask.preview.normal)
+            Row(Usertask.preview.todo)
         }
         .frame(width: 300)
         .padding()
@@ -220,10 +248,10 @@ struct TaskRow_Previews: PreviewProvider {
         .background(.background)
         
         VStack {
-            Row(UserTask.preview.urgent)
-            Row(UserTask.preview.archive)
-            Row(UserTask.preview.normal)
-            Row(UserTask.preview.todo)
+            Row(Usertask.preview.urgent)
+            Row(Usertask.preview.archive)
+            Row(Usertask.preview.normal)
+            Row(Usertask.preview.todo)
         }
         .frame(width: 300)
         .padding()
@@ -232,13 +260,8 @@ struct TaskRow_Previews: PreviewProvider {
     }
     
     @MainActor
-    static func Row(_ task: UserTask) -> some View {
-        TaskRow(
-            userTask: task,
-            title: "",
-            outline: "",
-            content: ""
-        )
+    static func Row(_ task: Usertask) -> some View {
+        TaskRow(usertask: task, isNew: false)
         .environment(\.locale, .US)
         .inject(DIContainer.preview)
     }

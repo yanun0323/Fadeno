@@ -2,29 +2,35 @@ import Foundation
 import SwiftUI
 import AppKit
 import Combine
+import UIComponent
 
-class AppState: ObservableObject {
-    @Published var shared: SharedState
-    @Published var userSetting: UserSetting
+class AppState {
+    var userdata: UserData
+    var usersetting: UserSetting
     
-    init(shared: SharedState) {
-        self.shared = shared
-        self.userSetting = UserSetting()
+    init(data: UserData) {
+        self.userdata = data
+        self.usersetting = UserSetting()
     }
 }
 
 extension AppState {
-    class SharedState: ObservableObject {
-        @Published var page: Int
-        @Published var currentTask: UserTask
-        @Published var tasks: [UserTask]
+    struct UserData {
+        var page: Int
+        var currentTask: Usertask
+        var tasks: [Usertask]
         
-        init(page: Int = 0, tasks: [UserTask] = []) {
+        init(page: Int = 0, tasks: [Usertask] = []) {
             self.page = page
             self.tasks = tasks
-            self.currentTask = tasks.first ?? UserTask.empty
+            self.currentTask = tasks.first ?? Usertask.empty
         }
     }
+}
+
+extension UserDefaults {
+    @UserDefault(key: "Appearance")
+    static var appearance: Int?
 }
 
 extension AppState {

@@ -14,14 +14,10 @@ struct FadenoApp: App {
     
     init() {
         let appState = AppState(
-            shared: AppState.SharedState()
+            data: AppState.UserData()
         )
         
-        let interactor = Interactor(
-            global: GlobalInteractor(appState: appState)
-        )
-        
-        self.container = DIContainer(appState: appState, interactor: interactor)
+        self.container = DIContainer(appState: appState)
     }
     
     var body: some Scene {

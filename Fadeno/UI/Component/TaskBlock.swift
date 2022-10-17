@@ -1,5 +1,5 @@
 //
-//  TaskTypeBlock.swift
+//  TasktypeBlock.swift
 //  Fadeno
 //
 //  Created by YanunYang on 2022/10/12.
@@ -12,13 +12,17 @@ struct TaskBlock: View {
     @EnvironmentObject var container: DIContainer
     @Environment(\.locale) private var locale
     
-    @State private var tasks: [UserTask] = []
     @State private var hovered: Bool = false
     
-    let type: UserTask.TaskType
+    var tasks: [Usertask] {
+        self.container.appState.userdata.tasks.filter({ $0.type == self.type })
+    }
+    
+    let type: Usertask.Tasktype
     var body: some View {
         HStack(spacing: 0) {
             LeftbarBlock
+            TaskListBlock
         }
     }
 }
@@ -27,8 +31,8 @@ struct TaskBlock: View {
 extension TaskBlock {
     var count: Double {
         var c: Double = 4
-        if container.appState.userSetting.hideBlock { c = 3 }
-        if container.appState.userSetting.hideEmergency { c = 2 }
+        if container.appState.usersetting.hideBlock { c = 3 }
+        if container.appState.usersetting.hideEmergency { c = 2 }
         return c
     }
 }
@@ -53,7 +57,7 @@ extension TaskBlock {
                 }
                 .frame(
                     width: 25,
-                    height: container.appState.userSetting.windowsHeight/count - 65,
+                    height: container.appState.usersetting.windowsHeight/count - 65,
                     alignment: .topLeading
                 )
                 .clipped()
@@ -93,7 +97,7 @@ extension TaskBlock {
     func CreateButton(action: @escaping () -> Void) -> some View  {
         ButtonCustom(width: 25, height: 22, action: action) {
             Text("+")
-                .foregroundColor(.accentColor)
+                .foregroundColor(type.color)
                 .font(.title)
                 .fontWeight(.thin)
                 .frame(width: 25)
@@ -103,7 +107,7 @@ extension TaskBlock {
     
     var CountBlock: some View {
         Text("\(tasks.count)")
-            .foregroundColor(.accentColor)
+            .foregroundColor(type.color)
             .font(.title2)
             .fontWeight(.thin)
             .frame(width: 25)
@@ -112,32 +116,27 @@ extension TaskBlock {
     
     var TaskListBlock: some View {
         ZStack {
-            if tasks.isEmpty {
-                List {
+            List {
+                if tasks.isEmpty {
                     ListEmptyBlock
                         .onInsert(of: ["UTType.SwiftUIReorderData"], perform: InserAction(_:_:))
                         .animation(.none, value: tasks)
-                }
-                .transition(.opacity)
-                .listStyle(.plain)
-                .background(.clear)
-            } else {
-                List {
+                } else {
                     ListExistBlock
                         .onInsert(of: ["UTType.SwiftUIReorderData"], perform: InserAction(_:_:))
                         .animation(.none, value: tasks)
                 }
-                .transition(.opacity)
-                .listStyle(.plain)
-                .background(.clear)
             }
+            .transition(.opacity)
+            .listStyle(.plain)
+            .background(.clear)
         }
         .animation(Config.Animation.Default, value: tasks.count)
     }
     
     var ListExistBlock: some DynamicViewContent {
         ForEach(tasks) { task in
-            TaskRow(userTask: task, title: task.title, outline: task.outline, content: task.content)
+            TaskRow(usertask: task, isNew: false)
                 .onDrag {
                     return NSItemProvider(object: SwiftUIListReorder(task))
                 } preview: {
@@ -164,7 +163,7 @@ extension TaskBlock {
                     Button{
                         withAnimation(Config.Animation.Default) {
                             DispatchQueue.main.async {
-                                tasks.removeAll(where: { $0.id == task.id })
+//                                tasks.removeAll(where: { $0.id == task.id })
 //                                DeleteFromDatabase(task)
                             }
                         }
@@ -228,8 +227,9 @@ extension TaskBlock {
     }
 }
 
-struct TaskTypeBlock_Previews: PreviewProvider {
+struct TasktypeBlock_Previews: PreviewProvider {
     static var previews: some View {
-        TaskBlock(type: .custom)
+        TaskBlock(type: .todo)
+            .inject(DIContainer.preview)
     }
 }
