@@ -13,11 +13,11 @@ struct FadenoApp: App {
     private var container: DIContainer
     
     init() {
-        let appstate = AppState(
+        let appState = AppState(
             data: AppState.UserData()
         )
         
-        self.container = DIContainer(appstate: appstate)
+        self.container = DIContainer(appstate: appState)
     }
     
     var body: some Scene {

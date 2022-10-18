@@ -13,6 +13,9 @@ extension UsertaskInteractor {
         appstate.userdata.tasks.first(where: { $0.id == task.id })?.Update(task)
     }
     
+    /**
+     Create a new usertask after the type of last order
+     */
     func CreateUsertask(_ task: Usertask) {
         var lastOrder = 0
         appstate.userdata.tasks.forEach { t in
@@ -24,10 +27,21 @@ extension UsertaskInteractor {
         appstate.userdata.tasks.append(task)
     }
     
-//    func MoveUsertask(_ task: Usertask, _ targetType: Usertask.Tasktype, _ targetIndex: Int) {
-//
-//    }
+    /**
+     Move an usertask order in the same type
+     */
+    func MoveUsertask(_ task: Usertask, _ targetIndex: Int) {
+        if task.order == targetIndex {
+            return
+        }
+        
+        
+    }
     
+    
+    /**
+     Insert an usertask order from the other type
+     */
     func InsertUsertask(_ task: Usertask) {
         print("insert usertask \(task.title) \(task.order)")
         appstate.userdata.tasks.forEach { t in
@@ -40,11 +54,9 @@ extension UsertaskInteractor {
     
     func RemoveUsertask(_ task: Usertask) {
         print("remove usertask \(task.title) \(task.order)")
-        print("tasks count before \(appstate.userdata.tasks.count)")
         guard let i = appstate.userdata.tasks.firstIndex(where: { $0.id == task.id }) else { return }
         let removed = appstate.userdata.tasks.remove(at: i)
         
-        print("tasks count after \(appstate.userdata.tasks.count)")
         appstate.userdata.tasks.forEach { t in
             if t.type == removed.type && t.order > removed.order {
                 t.order -= 1

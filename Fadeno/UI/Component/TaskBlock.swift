@@ -199,15 +199,26 @@ extension TaskBlock {
                 }
                 guard let recorder = recorder as? SwiftUIListReorder else { return }
                 var destination = index
-                if destination >= tasks.count {
-                    destination = recorder.usertask.type == type ? tasks.count - 1 : tasks.count
+                if recorder.usertask.type == type && destination > recorder.usertask.order {
+                    destination -= 1
                 }
-                print("move \(recorder.usertask.title) to \(destination)")
+                if tasks.isEmpty {
+                    destination = 0
+                }
+                print("destination \(destination)")
                 
+//                if recorder.usertask.type == type {
+//                    print("same type moving")
+//                    container.interactor.usertask.MoveUsertask(recorder.usertask, destination)
+//                    container.Publish()
+//                    return
+//                }
+//
                 container.interactor.usertask.RemoveUsertask(recorder.usertask)
                 container.Publish()
                 recorder.usertask.type = type
                 recorder.usertask.order = destination
+                container.Publish()
                 container.interactor.usertask.InsertUsertask(recorder.usertask)
                 container.Publish()
             }

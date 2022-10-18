@@ -217,6 +217,7 @@ extension TaskRow {
     var ContentPageBlock: some View {
         ButtonCustom(width: 25, height: 25, color: container.appstate.userdata.currentTask.id == usertask.id ? .blue : .transparent, radius: 3) {
             withAnimation {
+                print(usertask.order.description)
                 container.appstate.userdata.currentTask = usertask
                 container.Publish()
             }

@@ -10,6 +10,7 @@ extension AppState {
     static var preview: AppState {
         AppState(data: UserData(page: 0, tasks: [
             Usertask.preview.urgent,
+            Usertask.preview.urgent1,
             Usertask.preview.normal,
             Usertask.preview.todo,
             Usertask.preview.archive,
@@ -21,7 +22,33 @@ extension Usertask {
     static var preview = Usertask.Preview()
     
     class Preview {
-        let urgent = Usertask(0, "Urgent 測試緊急標題", "測試緊急概要", """
+        let urgent = Usertask(0, "Urgent 測試緊急標題0", "測試緊急概要", """
+        ## 測試緊急內容
+        - List A
+            - inline list
+            - inline list
+        - List B
+        
+        **Emp**
+        *Hey*
+                
+        |This|Is|Table|Header|
+        |:---:|:---:|:---:|:---:|
+        |A|B|C|D|
+        
+        ```go
+        func Hello() int {
+            return 0
+        }
+        ```
+        
+        ```swift
+        func Hello() -> Int {
+            0
+        }
+        ```
+        """, false, .urgent)
+        let urgent1 = Usertask(1, "Urgent 測試緊急標題1", "測試緊急概要", """
         ## 測試緊急內容
         - List A
             - inline list
