@@ -1,31 +1,23 @@
 import Foundation
 
 class DIContainer: ObservableObject {
-    var appstate: AppState {
-        willSet {
-            objectWillChange.send()
-        }
-    }
+    var appstate: AppState
     var interactor: Interactor
     
-    init(appstate: AppState) {
+    init(isMock: Bool = false) {
+        let appstate: AppState = isMock ? .preview : .init()
         self.appstate = appstate
-        self.interactor = Interactor(appstate)
-    }
-}
-
-extension DIContainer {
-    func Publish() {
-        DispatchQueue.main.async {
-            self.objectWillChange.send()
-        }
+        self.interactor = Interactor(isMock: isMock, appstate: appstate)
     }
 }
 
 struct Interactor {
     var usertask: UsertaskInteractor
+    var tasklist: MarkdownInteractor
     
-    init(_ appstate: AppState) {
-        self.usertask = UsertaskInteractor(appstate: appstate)
+    init(isMock: Bool, appstate: AppState) {
+        let dao: Repository = isMock ? DaoMock() : Dao()
+        self.usertask = UsertaskInteractor(repo: dao, appstate: appstate)
+        self.tasklist = MarkdownInteractor(appstate: appstate)
     }
 }

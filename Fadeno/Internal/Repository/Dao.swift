@@ -1,45 +1,121 @@
-import SwiftUI
+//
+//  Dao.swift
+//  Fadeno
+//
+//  Created by YanunYang on 2022/10/27.
+//
 
-class Dao {
-    var container: NSPersistentContainer
+import Foundation
+import CoreData
+
+final class Dao {
+    private var currentTask: Usertask?
+    private var ctx: NSManagedObjectContext
+    private var request: NSFetchRequest<UsertaskMO>
     
     init() {
-        let con = PersistenceController(name: "Database").container
-        self.container = con
-        self.container.loadPersistentStores { des, err in
-            if let err = err {
-                print("ERROR LOAD CORE DATA. \(err)")
-            } else {
-                print("Successfully loaded core data")
-            }
-        }
+        self.currentTask = nil
+        self.request = .init(entityName: "UsertaskMO")
+        self.ctx = PersistenceController.shared.container.viewContext
     }
+    
 }
 
-// MARK: Persistence
-extension Dao {
-    struct PersistenceController {
-        let container: NSPersistentContainer
+extension Dao: Repository {}
 
-        init(name: String, inMemory: Bool = false) {
-            container = NSPersistentContainer(name: name)
-            if inMemory {
-                container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-            }
-            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-                if let error = error as NSError? {
-                    /*
-                     Typical reasons for an error here include:
-                     * The parent directory does not exist, cannot be created, or disallows writing.
-                     * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                     * The device is out of space.
-                     * The store could not be migrated to the current model version.
-                     Check the error message to determine what the actual problem was.
-                     */
-                    fatalError("Unresolved error \(error), \(error.userInfo)")
+extension Dao: UsertaskRepository {
+    func CreateTask(_ usertask: Usertask) {
+        do {
+            var lastOrder: Int32 = -1
+            let type = Int32(usertask.type.rawValue)
+            try self.ctx.fetch(self.request).forEach({ mo in
+                if mo.type == type && mo.order > lastOrder {
+                    lastOrder += 1
                 }
             })
-            container.viewContext.automaticallyMergesChangesFromParent = true
+            usertask.order = Int(lastOrder)+1
+            UsertaskMO(context: self.ctx).Update(from: usertask)
+            try self.ctx.save()
+        } catch {
+            print("create usertask failed, \(error)")
+        }
+    }
+    
+    func GetCurrentTask() -> Usertask? {
+        return currentTask
+    }
+    
+    func SetCurrentTask(_ usertask: Usertask?) {
+        guard let task = usertask else {
+            currentTask = nil
+            return
+        }
+        do {
+            self.currentTask = try self.ctx.fetch(self.request).first(where: { $0.id! == task.id })?.New() ?? nil
+        } catch {
+            print("set current task failed, \(error)")
+        }
+    }
+    
+    func GetUsertask(_ id: UUID) -> Usertask? {
+        do {
+            return try self.ctx.fetch(self.request).first(where: { $0.id! == id })?.New() ?? nil
+        } catch {
+            print("get usertask failed, \(error)")
+            return nil
+        }
+    }
+    
+    func UpdateUsertask(_ usertask: Usertask) {
+        do {
+            guard let mo = try self.ctx.fetch(self.request).first(where: { $0.id! == usertask.id }) else {
+                print("can't find usertask from database, usertask id: \(usertask.id)")
+                return
+            }
+            mo.Update(from: usertask)
+            try self.ctx.save()
+        } catch {
+            print("update usertask failed, \(error)")
+        }
+        
+        if let t = self.currentTask {
+            self.SetCurrentTask(t)
+        }
+    }
+    
+    func DeleteUsertask(_ usertask: Usertask) {
+        do {
+            guard let mo = try self.ctx.fetch(self.request).first(where: { $0.id! == usertask.id }) else {
+                print("can't find usertask from database, usertask id: \(usertask.id)")
+                return
+            }
+            self.ctx.delete(mo)
+            try self.ctx.save()
+        } catch {
+            print("delete usertask failed, \(error)")
+        }
+        
+        if let t = self.currentTask {
+            self.SetCurrentTask(t)
+        }
+    }
+    
+    func ListTasks() -> [Usertask] {
+        do {
+            return try self.ctx.fetch(self.request).map({ $0.New() })
+        } catch {
+            print("list tasks failed, \(error)")
+            return []
+        }
+    }
+    
+    func UpdateTasks(_ tasks: [Usertask]) {
+        for task in tasks {
+            self.UpdateUsertask(task)
+        }
+        
+        if let t = self.currentTask {
+            self.SetCurrentTask(t)
         }
     }
 }

@@ -9,8 +9,9 @@ final class Usertask {
     var content: String
     var type: Tasktype
     var complete: Bool
+    var updateTime: Date
     
-    init(_ order: Int, _ title: String = "", _ outline: String = "", _ content: String = "",
+    init(_ order: Int = 0, _ title: String = "", _ outline: String = "", _ content: String = "",
          _ complete: Bool = false, _ type: Tasktype = .todo) {
         self.id = UUID()
         self.order = order
@@ -19,16 +20,18 @@ final class Usertask {
         self.content = content
         self.type = type
         self.complete = false
+        self.updateTime = .now
     }
     
-    init(_ mo: UsertaskMo) {
-        self.id = mo.id ?? UUID()
+    init(_ mo: UsertaskMO) {
+        self.id = mo.id!
         self.order = Int(mo.order)
-        self.title = mo.title ?? ""
-        self.outline = mo.outline ?? ""
-        self.content = mo.content ?? ""
+        self.title = mo.title!
+        self.outline = mo.outline!
+        self.content = mo.content!
         self.type = Tasktype(rawValue: Int(mo.type)) ?? .todo
         self.complete = mo.complete
+        self.updateTime = mo.updateTime ?? .now
     }
 }
 
@@ -43,6 +46,7 @@ extension Usertask: Codable {
         try container.encode(self.content, forKey: .content)
         try container.encode(self.type.rawValue, forKey: .type)
         try container.encode(self.complete, forKey: .complete)
+        try container.encode(self.updateTime, forKey: .updateTime)
     }
     
     enum CodingKeys: CodingKey {
@@ -54,10 +58,11 @@ extension Usertask: Codable {
         case content
         case type
         case complete
+        case updateTime
     }
     
     convenience init(from decoder: Decoder) throws {
-        self.init(0)
+        self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.order = try container.decode(Int.self, forKey: .order)
@@ -66,6 +71,7 @@ extension Usertask: Codable {
         self.content = try container.decode(String.self, forKey: .content)
         self.type = try container.decode(Tasktype.self, forKey: .type)
         self.complete = try container.decode(Bool.self, forKey: .complete)
+        self.updateTime = try container.decode(Date.self, forKey: .updateTime)
     }
 }
 
@@ -73,12 +79,23 @@ extension Usertask: Identifiable {}
 
 extension Usertask: Equatable {
     static func == (lhs: Usertask, rhs: Usertask) -> Bool {
-        lhs.id == rhs.id
+        lhs.hashID == rhs.hashID
     }
 }
 
+// MARK: Property
 extension Usertask {
-    static var empty = Usertask(0)
+    var hashID: String {
+        "\(id)-\(order)-\(title.count)-\(title.count)-\(outline.count)-\(content.count)-\(type.rawValue)-\(complete.description)"
+    }
+    
+    var isArchived: Bool {
+        type == .archived
+    }
+    
+    var isComplete: Bool {
+        type == .complete
+    }
 }
 
 // MARK: Function
@@ -90,13 +107,18 @@ extension Usertask {
         self.content = task.content
         self.type = task.type
         self.complete = task.complete
+        self.updateTime = .now
+    }
+    
+    func RefreshUpdateDate() {
+        self.updateTime = .now
     }
 }
 
 // MARK: Tasktype
 extension Usertask {
     enum Tasktype: Int {
-    case todo, normal, urgent, archive, custom
+    case todo, normal, urgent, archived, custom, complete
     }
 }
 
@@ -118,9 +140,11 @@ extension Usertask.Tasktype {
         case .urgent:
             return .red
         case .custom:
+            return .cyan
+        case .archived:
             return .yellow
-        case .archive:
-            return .gray
+        case .complete:
+            return .purple
         }
     }
     
@@ -134,8 +158,10 @@ extension Usertask.Tasktype {
             return String(localized: "urgent")
         case .custom:
             return String(localized: "custom")
-        case .archive:
-            return String(localized: "archive")
+        case .archived:
+            return String(localized: "archived")
+        case .complete:
+            return String(localized: "completed")
         }
     }
 }

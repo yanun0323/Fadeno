@@ -2,19 +2,13 @@ import Foundation
 
 extension DIContainer {
     static var preview: DIContainer {
-        DIContainer(appstate: AppState.preview)
+        DIContainer(isMock: true)
     }
 }
 
 extension AppState {
     static var preview: AppState {
-        AppState(data: UserData(page: 0, tasks: [
-            Usertask.preview.urgent,
-            Usertask.preview.urgent1,
-            Usertask.preview.normal,
-            Usertask.preview.todo,
-            Usertask.preview.archive,
-        ]))
+        AppState()
     }
 }
 
@@ -101,6 +95,6 @@ extension Usertask {
         }
         ```
         """, false, .todo)
-        let archive = Usertask(0, "Archive 測試封存標題", "測試封存概要", "## 測試封存內容", false, .archive)
+        let archive = Usertask(0, "Archive 測試封存標題", "測試封存概要", "## 測試封存內容", false, .archived)
     }
 }

@@ -5,4 +5,5 @@
 "normal" = "進行中";
 "urgent" = "緊急";
 "custom" = "自訂";
-"archive" = "封存";
+"archived" = "封存";
+"completed" = "完成";

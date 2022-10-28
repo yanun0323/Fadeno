@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A8357F3828FC677800B0CDC8 /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8357F3728FC677800B0CDC8 /* TaskListView.swift */; };
+		A805FFAA2908E17100918B49 /* MarkdownInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFA92908E17100918B49 /* MarkdownInteractor.swift */; };
+		A805FFAE2908F99100918B49 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFAD2908F99100918B49 /* Repository.swift */; };
+		A805FFB22908FAB800918B49 /* DaoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFB12908FAB800918B49 /* DaoMock.swift */; };
+		A805FFB82909BFDE00918B49 /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFB72909BFDE00918B49 /* Dao.swift */; };
+		A805FFBA2909C0C300918B49 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFB92909C0C300918B49 /* PersistenceController.swift */; };
+		A805FFBC2909C31000918B49 /* UsertaskMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFBB2909C31000918B49 /* UsertaskMO.swift */; };
+		A8357F3828FC677800B0CDC8 /* MultipleTaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */; };
+		A8375E1C290BEC3100D4E447 /* UserSettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */; };
 		A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4328D9A78900FB673A /* FadenoApp.swift */; };
 		A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4528D9A78900FB673A /* ContentView.swift */; };
 		A85C4E4828D9A78B00FB673A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A85C4E4728D9A78B00FB673A /* Assets.xcassets */; };
@@ -17,24 +24,32 @@
 		A85C4E6B28DAB34000FB673A /* MarkdownContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E6A28DAB34000FB673A /* MarkdownContent.swift */; };
 		A85C4E8128DAC9F200FB673A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E8028DAC9F200FB673A /* Extension.swift */; };
 		A85C4E8D28DAED9600FB673A /* UIComponent in Frameworks */ = {isa = PBXBuildFile; productRef = A85C4E8C28DAED9600FB673A /* UIComponent */; };
-		A864DB3C28EBFF3200B9DC46 /* Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864DB3B28EBFF3200B9DC46 /* Preview.swift */; };
+		A864DB3C28EBFF3200B9DC46 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864DB3B28EBFF3200B9DC46 /* Mock.swift */; };
 		A864DB4028EC0D6700B9DC46 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864DB3F28EC0D6700B9DC46 /* TaskRow.swift */; };
 		A864DB4328EC210800B9DC46 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864DB4228EC210800B9DC46 /* Config.swift */; };
 		A864DB8528F5140500B9DC46 /* SearchBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A864DB8428F5140500B9DC46 /* SearchBlock.swift */; };
 		A86FEB3428E459B800E42FEE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3328E459B800E42FEE /* MainView.swift */; };
 		A86FEB3628E57F7800E42FEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3528E57F7800E42FEE /* AppState.swift */; };
 		A86FEB3A28E5804800E42FEE /* UsertaskInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3928E5804800E42FEE /* UsertaskInteractor.swift */; };
-		A86FEB3E28E5872E00E42FEE /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3D28E5872E00E42FEE /* Dao.swift */; };
 		A8C1E78128E5ABEC001878EF /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8C1E77F28E5ABEC001878EF /* Database.xcdatamodeld */; };
-		A8D6655C28F57D4400220661 /* CountdownTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6655B28F57D4400220661 /* CountdownTrigger.swift */; };
 		A8D6655E28F66AF500220661 /* TaskBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6655D28F66AF500220661 /* TaskBlock.swift */; };
 		A8D6656628F66E5400220661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8D6656828F66E5400220661 /* Localizable.strings */; };
 		A8D6656B28F68B2800220661 /* SwiftUIListRecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6656A28F68B2800220661 /* SwiftUIListRecoder.swift */; };
-		A8D6657128F6B4BB00220661 /* UsertaskRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6657028F6B4BB00220661 /* UsertaskRepository.swift */; };
+		A8E40E88290A661300BA4ED8 /* SingleTaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E87290A661300BA4ED8 /* SingleTaskListView.swift */; };
+		A8E40E8A290BB00800BA4ED8 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E89290BB00800BA4ED8 /* SettingView.swift */; };
+		A8E40E8D290BBBDB00BA4ED8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */; };
+		A8E40E8F290BBDD800BA4ED8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E8E290BBDD800BA4ED8 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A8357F3728FC677800B0CDC8 /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		A805FFA92908E17100918B49 /* MarkdownInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownInteractor.swift; sourceTree = "<group>"; };
+		A805FFAD2908F99100918B49 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		A805FFB12908FAB800918B49 /* DaoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaoMock.swift; sourceTree = "<group>"; };
+		A805FFB72909BFDE00918B49 /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
+		A805FFB92909C0C300918B49 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		A805FFBB2909C31000918B49 /* UsertaskMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskMO.swift; sourceTree = "<group>"; };
+		A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleTaskListView.swift; sourceTree = "<group>"; };
+		A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingInteractor.swift; sourceTree = "<group>"; };
 		A85C4E4028D9A78900FB673A /* Fadeno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fadeno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A85C4E4328D9A78900FB673A /* FadenoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadenoApp.swift; sourceTree = "<group>"; };
 		A85C4E4528D9A78900FB673A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,21 +60,22 @@
 		A85C4E6828DA366D00FB673A /* Usertask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usertask.swift; sourceTree = "<group>"; };
 		A85C4E6A28DAB34000FB673A /* MarkdownContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownContent.swift; sourceTree = "<group>"; };
 		A85C4E8028DAC9F200FB673A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		A864DB3B28EBFF3200B9DC46 /* Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preview.swift; sourceTree = "<group>"; };
+		A864DB3B28EBFF3200B9DC46 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		A864DB3F28EC0D6700B9DC46 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		A864DB4228EC210800B9DC46 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		A864DB8428F5140500B9DC46 /* SearchBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBlock.swift; sourceTree = "<group>"; };
 		A86FEB3328E459B800E42FEE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A86FEB3528E57F7800E42FEE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		A86FEB3928E5804800E42FEE /* UsertaskInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskInteractor.swift; sourceTree = "<group>"; };
-		A86FEB3D28E5872E00E42FEE /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		A8C1E78028E5ABEC001878EF /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
-		A8D6655B28F57D4400220661 /* CountdownTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTrigger.swift; sourceTree = "<group>"; };
 		A8D6655D28F66AF500220661 /* TaskBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBlock.swift; sourceTree = "<group>"; };
 		A8D6656728F66E5400220661 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A8D6656928F66E7700220661 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A8D6656A28F68B2800220661 /* SwiftUIListRecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIListRecoder.swift; sourceTree = "<group>"; };
-		A8D6657028F6B4BB00220661 /* UsertaskRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskRepository.swift; sourceTree = "<group>"; };
+		A8E40E87290A661300BA4ED8 /* SingleTaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTaskListView.swift; sourceTree = "<group>"; };
+		A8E40E89290BB00800BA4ED8 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		A8E40E8E290BBDD800BA4ED8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +147,11 @@
 			children = (
 				A85C4E4528D9A78900FB673A /* ContentView.swift */,
 				A86FEB3328E459B800E42FEE /* MainView.swift */,
-				A8357F3728FC677800B0CDC8 /* TaskListView.swift */,
+				A8E40E8E290BBDD800BA4ED8 /* HomeView.swift */,
+				A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */,
+				A8E40E87290A661300BA4ED8 /* SingleTaskListView.swift */,
+				A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */,
+				A8E40E89290BB00800BA4ED8 /* SettingView.swift */,
 				A864DB4428EC399100B9DC46 /* Component */,
 			);
 			path = UI;
@@ -142,7 +162,7 @@
 			children = (
 				A85C4E5C28DA305C00FB673A /* DIContainer.swift */,
 				A86FEB3528E57F7800E42FEE /* AppState.swift */,
-				A864DB3B28EBFF3200B9DC46 /* Preview.swift */,
+				A864DB3B28EBFF3200B9DC46 /* Mock.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -159,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				A86FEB3928E5804800E42FEE /* UsertaskInteractor.swift */,
+				A805FFA92908E17100918B49 /* MarkdownInteractor.swift */,
+				A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -166,8 +188,9 @@
 		A85C4E5928DA301000FB673A /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				A8D6657028F6B4BB00220661 /* UsertaskRepository.swift */,
-				A86FEB3D28E5872E00E42FEE /* Dao.swift */,
+				A805FFAD2908F99100918B49 /* Repository.swift */,
+				A805FFB72909BFDE00918B49 /* Dao.swift */,
+				A805FFB12908FAB800918B49 /* DaoMock.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -176,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				A8C1E77F28E5ABEC001878EF /* Database.xcdatamodeld */,
+				A805FFBB2909C31000918B49 /* UsertaskMO.swift */,
+				A805FFB92909C0C300918B49 /* PersistenceController.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -184,7 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				A85C4E8028DAC9F200FB673A /* Extension.swift */,
-				A8D6655B28F57D4400220661 /* CountdownTrigger.swift */,
 				A8D6656A28F68B2800220661 /* SwiftUIListRecoder.swift */,
 			);
 			path = Util;
@@ -287,26 +311,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E40E8F290BBDD800BA4ED8 /* HomeView.swift in Sources */,
 				A86FEB3428E459B800E42FEE /* MainView.swift in Sources */,
 				A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */,
+				A805FFB22908FAB800918B49 /* DaoMock.swift in Sources */,
 				A864DB4028EC0D6700B9DC46 /* TaskRow.swift in Sources */,
-				A8D6655C28F57D4400220661 /* CountdownTrigger.swift in Sources */,
 				A864DB4328EC210800B9DC46 /* Config.swift in Sources */,
+				A805FFAE2908F99100918B49 /* Repository.swift in Sources */,
+				A8E40E8A290BB00800BA4ED8 /* SettingView.swift in Sources */,
 				A85C4E5D28DA305C00FB673A /* DIContainer.swift in Sources */,
+				A805FFAA2908E17100918B49 /* MarkdownInteractor.swift in Sources */,
 				A8C1E78128E5ABEC001878EF /* Database.xcdatamodeld in Sources */,
 				A85C4E6B28DAB34000FB673A /* MarkdownContent.swift in Sources */,
-				A864DB3C28EBFF3200B9DC46 /* Preview.swift in Sources */,
-				A86FEB3E28E5872E00E42FEE /* Dao.swift in Sources */,
+				A864DB3C28EBFF3200B9DC46 /* Mock.swift in Sources */,
 				A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */,
 				A85C4E6928DA366D00FB673A /* Usertask.swift in Sources */,
+				A8E40E8D290BBBDB00BA4ED8 /* ProfileView.swift in Sources */,
 				A86FEB3A28E5804800E42FEE /* UsertaskInteractor.swift in Sources */,
 				A85C4E8128DAC9F200FB673A /* Extension.swift in Sources */,
-				A8357F3828FC677800B0CDC8 /* TaskListView.swift in Sources */,
+				A8E40E88290A661300BA4ED8 /* SingleTaskListView.swift in Sources */,
+				A805FFBA2909C0C300918B49 /* PersistenceController.swift in Sources */,
+				A8357F3828FC677800B0CDC8 /* MultipleTaskListView.swift in Sources */,
 				A8D6656B28F68B2800220661 /* SwiftUIListRecoder.swift in Sources */,
+				A8375E1C290BEC3100D4E447 /* UserSettingInteractor.swift in Sources */,
+				A805FFBC2909C31000918B49 /* UsertaskMO.swift in Sources */,
 				A86FEB3628E57F7800E42FEE /* AppState.swift in Sources */,
 				A8D6655E28F66AF500220661 /* TaskBlock.swift in Sources */,
 				A864DB8528F5140500B9DC46 /* SearchBlock.swift in Sources */,
-				A8D6657128F6B4BB00220661 /* UsertaskRepository.swift in Sources */,
+				A805FFB82909BFDE00918B49 /* Dao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

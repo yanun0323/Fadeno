@@ -5,4 +5,5 @@
 "normal" = "Normal";
 "urgent" = "Urgent";
 "custom" = "Custom";
-"archive" = "Archive";
+"archived" = "Archived";
+"completed" = "Completed";

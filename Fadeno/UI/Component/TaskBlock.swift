@@ -11,18 +11,27 @@ import UIComponent
 struct TaskBlock: View {
     @EnvironmentObject var container: DIContainer
     @Environment(\.locale) private var locale
+    @State var tasks: [Usertask] = []
     
     @State private var hovered: Bool = false
     
-    var tasks: [Usertask] {
-        self.container.appstate.userdata.tasks.filter({ $0.type == self.type }).sorted(by: { $0.order < $1.order })
-    }
-    
     let type: Usertask.Tasktype
+    @Binding var searchText: String
+    let less: (Usertask,Usertask) -> Bool
+    var isSingle: Bool = false
+    
     var body: some View {
         HStack(spacing: 0) {
-            LeftbarBlock
+            if !isSingle {
+                LeftbarBlock
+            }
             TaskListBlock
+        }
+        .onReceive(container.appstate.userdata.tasks) { value in
+            tasks = container.interactor.usertask.SearchHandler(searchText, value.filter({ $0.type == self.type })).sorted(by: { less($0,$1) })
+        }
+        .onAppear {
+            container.interactor.usertask.Publish()
         }
     }
 }
@@ -31,14 +40,44 @@ struct TaskBlock: View {
 extension TaskBlock {
     var count: Double {
         var c: Double = 4
-        if container.appstate.usersetting.hideBlock { c = 3 }
-        if container.appstate.usersetting.hideEmergency { c = 2 }
+//        if container.appstate.usersetting.hideBlock { c = 3 }
+//        if container.appstate.usersetting.hideEmergency { c = 2 }
         return c
     }
 }
 
 // MARK: SubView
 extension TaskBlock {
+    var TopbarBlock: some View {
+        HStack(spacing: 5) {
+            if locale.description.split(separator: "_")[0].contains("en") {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(type.title)
+                        .font(.title)
+                        .fontWeight(.thin)
+                        .foregroundColor(.primary75)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
+                        .fixedSize()
+                        .rotationEffect(Angle(degrees: 90), anchor: .bottomLeading)
+                        .multilineTextAlignment(.leading)
+                        .offset(x: 0, y: -25)
+                }
+                .frame(height: 25)
+                .clipped()
+            } else {
+                Text(type.title)
+                    .font(.title)
+                    .fontWeight(.thin)
+                    .frame(width: 25)
+                    .minimumScaleFactor(1)
+            }
+            Spacer()
+            CountAndCreaterBlock
+        }
+        .background(.background)
+        .zIndex(2)
+    }
     var LeftbarBlock: some View {
         VStack(spacing: 5) {
             if locale.description.split(separator: "_")[0].contains("en") {
@@ -56,8 +95,7 @@ extension TaskBlock {
                         .offset(x: 0, y: -25)
                 }
                 .frame(
-                    width: 25,
-                    height: container.appstate.usersetting.windowsHeight/count - 65,
+                    width: 25, // height: container.appstate.usersetting.windowsHeight/count - 65,
                     alignment: .topLeading
                 )
                 .clipped()
@@ -79,7 +117,11 @@ extension TaskBlock {
         ZStack {
             if hovered || tasks.isEmpty {
                 CreateButton {
-//                    CreateAction()
+                    withAnimation {
+                        let task = Usertask()
+                        task.type = type
+                        container.interactor.usertask.CreateUsertask(task)
+                    }
                 }
                 .transition(.opacity)
             } else {
@@ -127,49 +169,67 @@ extension TaskBlock {
                         .animation(.none, value: tasks)
                 }
             }
-            .transition(.opacity)
             .listStyle(.plain)
             .background(.clear)
         }
-        .animation(Config.Animation.Default, value: tasks.count)
     }
     
     var ListExistBlock: some DynamicViewContent {
         ForEach(tasks) { task in
-            TaskRow(usertask: task, isNew: false)
+            TaskRow(usertask: .constant(task)).id(task.hashID)
+                .transition(.opacity)
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .onDrag {
                     return NSItemProvider(object: SwiftUIListReorder(task))
                 } preview: {
                     HStack {
                         Rectangle()
-                            .foregroundColor(.accentColor)
+                            .foregroundColor(type.color)
                             .frame(width: 3)
                         Text(task.title)
-                            .font(.body)
+                            .font(.title)
                             .fontWeight(.light)
                         Spacer()
                     }
                     .background(.background)
                 }
                 .contextMenu {
-                    Button {
+                    Button("Archive Task") {
                         withAnimation(Config.Animation.Default) {
-                            DispatchQueue.main.async {
+                            if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
+                                container.interactor.usertask.SetCurrentUsertask(nil)
+                            }
+                            container.interactor.usertask.MoveUserTask(task, toType: .archived)
+                        }
+                    }.disabled(task.isArchived)
+                    
+                    Button("Move To Todo") {
+                        withAnimation(Config.Animation.Default) {
+                            if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
+                                container.interactor.usertask.SetCurrentUsertask(nil)
+                            }
+                            container.interactor.usertask.MoveUserTask(task, toType: .todo)
+                        }
+                    }.disabled(!task.isArchived)
+                    
+                    if task.isComplete {
+                        Button("Delete Task", role: .destructive) {
+                            withAnimation(Config.Animation.Default) {
+                                if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
+                                    container.interactor.usertask.SetCurrentUsertask(nil)
+                                }
+                                container.interactor.usertask.DeleteUsertask(task)
                             }
                         }
-                    } label: {
-                        Text("Archive Task")
-                    }
-                    Button{
-                        withAnimation(Config.Animation.Default) {
-                            DispatchQueue.main.async {
-//                                tasks.removeAll(where: { $0.id == task.id })
-//                                DeleteFromDatabase(task)
+                    } else {
+                        Button("Complete Task", role: .destructive) {
+                            withAnimation(Config.Animation.Default) {
+                                if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
+                                    container.interactor.usertask.SetCurrentUsertask(nil)
+                                }
+                                container.interactor.usertask.MoveUserTask(task, toType: .complete)
                             }
                         }
-                    } label: {
-                        Text("Delete Task")
-                            .foregroundColor(.red)
                     }
                 }
         }
@@ -205,22 +265,12 @@ extension TaskBlock {
                 if tasks.isEmpty {
                     destination = 0
                 }
-                print("destination \(destination)")
                 
-//                if recorder.usertask.type == type {
-//                    print("same type moving")
-//                    container.interactor.usertask.MoveUsertask(recorder.usertask, destination)
-//                    container.Publish()
-//                    return
-//                }
-//
-                container.interactor.usertask.RemoveUsertask(recorder.usertask)
-                container.Publish()
-                recorder.usertask.type = type
-                recorder.usertask.order = destination
-                container.Publish()
-                container.interactor.usertask.InsertUsertask(recorder.usertask)
-                container.Publish()
+                container.interactor.usertask.MoveUserTask(
+                    recorder.usertask,
+                    toOrder: destination,
+                    toType: type
+                )
             }
         }
     }
@@ -228,7 +278,7 @@ extension TaskBlock {
 
 struct TasktypeBlock_Previews: PreviewProvider {
     static var previews: some View {
-        TaskBlock(type: .todo)
+        TaskBlock(tasks: [.preview.urgent, .preview.urgent1], type: .todo, searchText: .constant(""), less: {$0.order < $1.order})
             .inject(DIContainer.preview)
     }
 }

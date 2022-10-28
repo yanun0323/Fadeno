@@ -10,20 +10,13 @@ import UIComponent
 
 @main
 struct FadenoApp: App {
-    private var container: DIContainer
-    
-    init() {
-        let appState = AppState(
-            data: AppState.UserData()
-        )
-        
-        self.container = DIContainer(appstate: appState)
-    }
+    private var container: DIContainer = DIContainer(isMock: false)
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .inject(DIContainer.preview)
+                .inject(container)
+                .frame(minWidth: 900, minHeight: 600)
         }
         .commands {
                 CommandMenu("Edit") {

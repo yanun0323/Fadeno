@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import UIComponent
 
 extension NSTableView {
     open override func viewDidMoveToWindow() {
@@ -22,4 +23,8 @@ extension NSTextView {
             enclosingScrollView?.hasHorizontalScroller = false
         }
     }
+}
+
+extension UserDefaults {
+    
 }

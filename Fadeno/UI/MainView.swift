@@ -3,8 +3,11 @@ import UIComponent
 
 struct MainView: View {
     @EnvironmentObject private var container: DIContainer
-    @State private var router: Int = 1
+    @State private var router: Int = 0
+    @State private var popupProfile: Bool = false
     private let sidebarWidth: CGFloat = 40
+    private let sidebarPadding: CGFloat = 5
+    private let iconFont: Font = .system(size: 20, weight: .light, design: .default)
     
     var body: some View {
         HStack(spacing: 0) {
@@ -12,13 +15,19 @@ struct MainView: View {
             Separator(direction: .vertical, color: .section, size: 1)
             switch router {
             case 1:
-                TaskListView()
+                MultipleTaskListView()
+            case 2:
+                SingleTaskListView(type: .archived)
+            case 3:
+                SingleTaskListView(type: .complete)
+            case 98:
+                ProfileView()
+            case 99:
+                SettingView()
+            case 100:
+                HomeView()
             default:
-                Rectangle()
-                    .foregroundColor(.transparent)
-                    .overlay {
-                        Text("Home")
-                    }
+                MultipleTaskListView()
             }
         }
     }
@@ -27,43 +36,57 @@ struct MainView: View {
 // MARK: View Block
 extension MainView {
     var SidebarBlock: some View {
-        VStack(spacing: 10) {
-            ButtonCustom(width: sidebarWidth, height: sidebarWidth) {
-                withAnimation {
-                    router = 0
-                }
-            } content: {
-                HStack(spacing: 0) {
-                    Block(width: 5, height: sidebarWidth, color: router == 0 ? .blue : .transparent)
-                    Image(systemName: "house.fill")
-                        .font(.title)
-                        .foregroundColor(.gray)
-                        .frame(width: sidebarWidth-10)
-                    Block(width: 5, height: sidebarWidth)
-                }
-            }
-            ButtonCustom(width: sidebarWidth, height: sidebarWidth) {
-                withAnimation {
-                    router = 1
-                }
-            } content: {
-                HStack(spacing: 0) {
-                    Block(width: 5, height: sidebarWidth, color: router == 1 ? .blue : .transparent)
-                    Image(systemName: "checklist")
-                        .font(.title)
-                        .foregroundColor(.gray)
-                        .frame(width: sidebarWidth-10)
-                    Block(width: 5, height: sidebarWidth)
-                }
-            }
-
+        VStack(spacing: 5) {
+            SidebarButton(image: "house", selected: "house.fill", page: 0)
+//            SidebarButton(image: "checklist", page: 1)
+            SidebarButton(image: "archivebox", selected: "archivebox.fill", page: 2)
+            SidebarButton(image: "checkmark", page: 3)
+            
             Spacer()
+            
+            SidebarButton(image: "person.circle", page: 98)
+            .popover(isPresented: $popupProfile, arrowEdge: .trailing, content: ProfileViewBlock)
+            SidebarButton(image: "gearshape", selected: "gearshape.fill", page: 99)
         }
-        .background(.white)
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+// MARK: Function
+extension MainView {
+    func ProfileViewBlock() -> some View {
+        Rectangle()
+            .foregroundColor(.transparent)
+            .frame(width: 500, height: 200)
+            .overlay {
+                Text("Profile View")
+            }
+    }
+    
+    func SidebarButton(image: String, page: Int = -1) -> some View {
+        SidebarButton(image: image, selected: image, page: page)
+    }
+    
+    func SidebarButton(image: String, selected: String, page: Int = -1) -> some View {
+        ButtonCustom(width: sidebarWidth - 2*sidebarPadding, height: sidebarWidth - 2*sidebarPadding) {
+            withAnimation {
+                if page >= 0 && router != page {
+                    router = page
+                    container.interactor.usertask.SetCurrentUsertask(nil)
+                }
+            }
+        } content: {
+            Image(systemName: router == page ? selected : image)
+                .font(iconFont)
+                .foregroundColor(router == page ? .white : .gray)
+        }
+        .padding(sidebarPadding/2)
+        .background(router == page ? .gray : .transparent)
+        .cornerRadius(10)
+        .padding(sidebarPadding/2)
+    }
+}
+
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .inject(DIContainer.preview)
