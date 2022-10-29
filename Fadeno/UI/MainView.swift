@@ -38,7 +38,6 @@ extension MainView {
     var SidebarBlock: some View {
         VStack(spacing: 5) {
             SidebarButton(image: "house", selected: "house.fill", page: 0)
-//            SidebarButton(image: "checklist", page: 1)
             SidebarButton(image: "archivebox", selected: "archivebox.fill", page: 2)
             SidebarButton(image: "checkmark", page: 3)
             
@@ -77,10 +76,10 @@ extension MainView {
         } content: {
             Image(systemName: router == page ? selected : image)
                 .font(iconFont)
-                .foregroundColor(router == page ? .white : .gray)
+                .foregroundColor(router == page ? .primary : .primary50)
         }
         .padding(sidebarPadding/2)
-        .background(router == page ? .gray : .transparent)
+        .background(router == page ? Color.section : Color.transparent)
         .cornerRadius(10)
         .padding(sidebarPadding/2)
     }

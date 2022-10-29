@@ -14,10 +14,12 @@ class DIContainer: ObservableObject {
 struct Interactor {
     var usertask: UsertaskInteractor
     var tasklist: MarkdownInteractor
+    var usersetting: UserSettingInteractor
     
     init(isMock: Bool, appstate: AppState) {
         let dao: Repository = isMock ? DaoMock() : Dao()
-        self.usertask = UsertaskInteractor(repo: dao, appstate: appstate)
+        self.usertask = UsertaskInteractor(appstate: appstate, repo: dao)
         self.tasklist = MarkdownInteractor(appstate: appstate)
+        self.usersetting = UserSettingInteractor(appstate: appstate, repo: dao)
     }
 }

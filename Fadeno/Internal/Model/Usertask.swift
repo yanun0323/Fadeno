@@ -144,7 +144,7 @@ extension Usertask.Tasktype {
         case .archived:
             return .yellow
         case .complete:
-            return .purple
+            return .black
         }
     }
     

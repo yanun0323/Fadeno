@@ -38,7 +38,7 @@ extension AppState {
 
 extension AppState {
     struct UserSetting {
-        var appearance: PassthroughSubject<NSAppearance, Never>
+        var appearance: PassthroughSubject<NSAppearance?, Never>
         
         init() {
             self.appearance = PassthroughSubject()

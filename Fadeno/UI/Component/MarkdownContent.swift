@@ -21,15 +21,12 @@ struct MarkdownContent<V>: View where V: View {
             mdBlock
         }
         .padding()
-        .background(edit ? Color.white : Color.transparent)
+        .background(edit ? Color.section : Color.transparent)
         .hotkey(key: .kVK_Return, keyBase: [.command]) {
             ToggleMode()
         }
         .hotkey(key: .kVK_Return, keyBase: []) {
             EditMode()
-        }
-        .hotkey(key: .kVK_Escape, keyBase: []) {
-            ViewMode()
         }
         .onChange(of: focus) { newValue in
             if !newValue {
@@ -61,11 +58,12 @@ extension MarkdownContent {
     var infoBlock: some View {
         HStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text(edit ? "編輯模式" : "檢視模式")
+                Text(edit ? "Markdown 編輯模式" : "Markdown 檢視模式")
                     .foregroundColor(edit ? .accentColor : nil)
-                Text(edit ? "按下 Escape / ⌘ + Return 退出編輯" : "按下 Return / ⌘ + Return 進行編輯")
+                Text(edit ? "按下 ⌘ + Return 退出編輯" : "按下 Return / ⌘ + Return 進行編輯")
                     .foregroundColor(.gray)
                     .font(.caption)
+                    .animation(.none, value: edit)
             }
             Spacer()
             VStack(alignment: .trailing, spacing: 0) {
@@ -78,9 +76,9 @@ extension MarkdownContent {
         }
         .padding()
         .frame(height: 40)
-        .background(Color.white)
+        .background(.background)
         .cornerRadius(7)
-        .shadow(color: .primary25, radius: 2, y: 1)
+        .shadow(color: .black.opacity(0.5), radius: 2, y: 1)
     }
     
     var mdBlock: some View {

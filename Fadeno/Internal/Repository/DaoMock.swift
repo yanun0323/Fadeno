@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DaoMock {
+final class DaoMock: UserSettingDao {
     var tasks: [Usertask] = [
         .preview.archive,
         .preview.normal,
@@ -16,8 +16,6 @@ final class DaoMock {
         .preview.urgent1
     ]
     var currentTask: Usertask? = nil
-     
-    init() {}
 }
 
 extension DaoMock: Repository {}

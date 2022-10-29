@@ -7,16 +7,24 @@
 
 import SwiftUI
 import UIComponent
+import AppKit
 
 @main
 struct FadenoApp: App {
-    private var container: DIContainer = DIContainer(isMock: false)
+    private var container: DIContainer
+    
+    init() {
+        container = DIContainer(isMock: false)
+    }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .inject(container)
                 .frame(minWidth: 900, minHeight: 600)
+                .onAppear {
+                    NSApp.appearance = container.interactor.usersetting.GetAppearance()
+                }
         }
         .commands {
                 CommandMenu("Edit") {

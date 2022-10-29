@@ -4,7 +4,7 @@ struct UsertaskInteractor {
     private var appstate: AppState
     private var repo: Repository
     
-    init(repo: Repository, appstate: AppState) {
+    init(appstate: AppState, repo: Repository) {
         self.appstate = appstate
         self.repo = repo
     }

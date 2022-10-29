@@ -7,17 +7,26 @@
 
 import SwiftUI
 import UIComponent
+import AppKit
 
 struct SettingView: View {
     @EnvironmentObject var container: DIContainer
+    @State var appearance: NSAppearance? = nil
     var body: some View {
         VStack {
             ThemeBlock
+                .padding()
             Rectangle()
                 .foregroundColor(.transparent)
                 .overlay {
                     Text("Setting View")
                 }
+        }
+        .onAppear {
+            appearance = container.interactor.usersetting.GetAppearance()
+        }
+        .onReceive(container.appstate.usersetting.appearance) { value in
+            appearance = value
         }
     }
 }
@@ -37,8 +46,7 @@ extension SettingView {
                 VStack(spacing: 10) {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
                         withAnimation(Config.Animation.Default) {
-//                            container.appstate.setting.appearance = nil
-                            NSApp.appearance = nil
+                            container.interactor.usersetting.SetAppearance(0)
                         }
                     } content: {
                         ZStack {
@@ -65,15 +73,14 @@ extension SettingView {
                     .overlay(
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 3))
-                            .opacity(container.appstate.setting.appearance == nil ? 1 : 0)
+                            .opacity(appearance == nil ? 1 : 0)
                     )
                     Text("System")
                 }
                 VStack(spacing: 10)  {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
                         withAnimation(Config.Animation.Default) {
-//                            container.appstate.setting.appearance = NSAppearance(named: .aqua)
-                            NSApp.appearance = NSAppearance(named: .aqua)
+                            container.interactor.usersetting.SetAppearance(1)
                         }
                     } content: {
                         LightImage
@@ -82,15 +89,14 @@ extension SettingView {
                     .overlay(
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 3))
-                            .opacity(container.appstate.setting.appearance?.name == .aqua ? 1 : 0)
+                            .opacity(appearance?.name == .aqua ? 1 : 0)
                 )
                     Text("Light")
                 }
                 VStack(spacing: 10)  {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
                         withAnimation(Config.Animation.Default) {
-//                            container.appstate.setting.appearance = NSAppearance(named: .darkAqua)
-                            NSApp.appearance = NSAppearance(named: .darkAqua)
+                            container.interactor.usersetting.SetAppearance(2)
                         }
                     } content: {
                         DarkImage
@@ -99,7 +105,7 @@ extension SettingView {
                     .overlay(
                         RoundedRectangle(cornerRadius: 5)
                             .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2.5))
-                            .opacity(container.appstate.setting.appearance?.name == .darkAqua ? 1 : 0)
+                            .opacity(appearance?.name == .darkAqua ? 1 : 0)
                     )
                     Text("Dark")
                 }

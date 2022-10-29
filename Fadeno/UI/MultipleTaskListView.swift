@@ -21,7 +21,7 @@ struct MultipleTaskListView: View {
                     VStack(spacing: 0) {
                         ForEach(Usertask.Tasktype.allCases) { type in
                             switch type {
-                            case .urgent, .normal, .todo, .custom:
+                            case .urgent, .normal, .todo: //, .custom:
                                 Separator(color: .section)
                                     .padding(.vertical, 5)
                                 TaskBlock(type: type, searchText: $searchText, less: { $0.order < $1.order })

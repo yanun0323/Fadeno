@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     var body: some View {
         Rectangle()
-            .foregroundColor(.white)
+            .foregroundColor(.transparent)
             .overlay {
                 Text("Setting View")
             }

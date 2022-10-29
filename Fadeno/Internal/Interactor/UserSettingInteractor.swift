@@ -6,15 +6,32 @@
 //
 
 import Foundation
+import AppKit
 
 class UserSettingInteractor {
     private var appstate: AppState
+    private var repo: Repository
     
-    init(appstate: AppState) {
+    init(appstate: AppState, repo: Repository) {
         self.appstate = appstate
+        self.repo = repo
     }
 }
 
 extension UserSettingInteractor {
-    UserDefaults.app
+    /**
+     0 = system
+     1 = light
+     2 = dark
+     */
+    func SetAppearance(_ i: Int) {
+        repo.SetAppereance(i)
+        let appearance = repo.GetAppereance()
+        NSApp.appearance = appearance
+        appstate.usersetting.appearance.send(appearance)
+    }
+    
+    func GetAppearance() -> NSAppearance? {
+        repo.GetAppereance()
+    }
 }

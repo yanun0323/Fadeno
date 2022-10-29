@@ -24,7 +24,7 @@ struct SearchBlock: View {
             .textFieldStyle(.plain)
             .background {
                 Capsule()
-                    .foregroundColor(.white)
+                    .foregroundColor(.section)
                     .shadow(radius: 1.2)
             }
             .onAppear {

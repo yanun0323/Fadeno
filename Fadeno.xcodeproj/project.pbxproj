@@ -15,6 +15,8 @@
 		A805FFBC2909C31000918B49 /* UsertaskMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFBB2909C31000918B49 /* UsertaskMO.swift */; };
 		A8357F3828FC677800B0CDC8 /* MultipleTaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */; };
 		A8375E1C290BEC3100D4E447 /* UserSettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */; };
+		A8375E21290C621F00D4E447 /* UsertaskDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E20290C621F00D4E447 /* UsertaskDao.swift */; };
+		A8375E23290C62D200D4E447 /* UserSettingDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E22290C62D200D4E447 /* UserSettingDao.swift */; };
 		A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4328D9A78900FB673A /* FadenoApp.swift */; };
 		A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4528D9A78900FB673A /* ContentView.swift */; };
 		A85C4E4828D9A78B00FB673A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A85C4E4728D9A78B00FB673A /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		A805FFBB2909C31000918B49 /* UsertaskMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskMO.swift; sourceTree = "<group>"; };
 		A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleTaskListView.swift; sourceTree = "<group>"; };
 		A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingInteractor.swift; sourceTree = "<group>"; };
+		A8375E20290C621F00D4E447 /* UsertaskDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskDao.swift; sourceTree = "<group>"; };
+		A8375E22290C62D200D4E447 /* UserSettingDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingDao.swift; sourceTree = "<group>"; };
 		A85C4E4028D9A78900FB673A /* Fadeno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fadeno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A85C4E4328D9A78900FB673A /* FadenoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadenoApp.swift; sourceTree = "<group>"; };
 		A85C4E4528D9A78900FB673A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 			children = (
 				A805FFAD2908F99100918B49 /* Repository.swift */,
 				A805FFB72909BFDE00918B49 /* Dao.swift */,
+				A8375E20290C621F00D4E447 /* UsertaskDao.swift */,
+				A8375E22290C62D200D4E447 /* UserSettingDao.swift */,
 				A805FFB12908FAB800918B49 /* DaoMock.swift */,
 			);
 			path = Repository;
@@ -325,8 +331,10 @@
 				A85C4E6B28DAB34000FB673A /* MarkdownContent.swift in Sources */,
 				A864DB3C28EBFF3200B9DC46 /* Mock.swift in Sources */,
 				A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */,
+				A8375E23290C62D200D4E447 /* UserSettingDao.swift in Sources */,
 				A85C4E6928DA366D00FB673A /* Usertask.swift in Sources */,
 				A8E40E8D290BBBDB00BA4ED8 /* ProfileView.swift in Sources */,
+				A8375E21290C621F00D4E447 /* UsertaskDao.swift in Sources */,
 				A86FEB3A28E5804800E42FEE /* UsertaskInteractor.swift in Sources */,
 				A85C4E8128DAC9F200FB673A /* Extension.swift in Sources */,
 				A8E40E88290A661300BA4ED8 /* SingleTaskListView.swift in Sources */,

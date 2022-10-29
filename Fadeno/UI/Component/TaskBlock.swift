@@ -39,7 +39,7 @@ struct TaskBlock: View {
 // MARK: Property
 extension TaskBlock {
     var count: Double {
-        var c: Double = 4
+        let c: Double = 4
 //        if container.appstate.usersetting.hideBlock { c = 3 }
 //        if container.appstate.usersetting.hideEmergency { c = 2 }
         return c
@@ -194,35 +194,43 @@ extension TaskBlock {
                     .background(.background)
                 }
                 .contextMenu {
-                    Button("Archive Task") {
-                        withAnimation(Config.Animation.Default) {
-                            if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
-                                container.interactor.usertask.SetCurrentUsertask(nil)
+                    if task.isArchived || task.isComplete {
+                        Button("Move To Todo") {
+                            withAnimation(Config.Animation.Default) {
+                                if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
+                                    container.interactor.usertask.SetCurrentUsertask(nil)
+                                }
+                                container.interactor.usertask.MoveUserTask(task, toType: .todo)
                             }
-                            container.interactor.usertask.MoveUserTask(task, toType: .archived)
                         }
-                    }.disabled(task.isArchived)
+                        
+                    }
                     
-                    Button("Move To Todo") {
-                        withAnimation(Config.Animation.Default) {
-                            if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
-                                container.interactor.usertask.SetCurrentUsertask(nil)
+                    if !task.isArchived {
+                        Button("Archive Task") {
+                            withAnimation(Config.Animation.Default) {
+                                if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
+                                    container.interactor.usertask.SetCurrentUsertask(nil)
+                                }
+                                container.interactor.usertask.MoveUserTask(task, toType: .archived)
                             }
-                            container.interactor.usertask.MoveUserTask(task, toType: .todo)
                         }
-                    }.disabled(!task.isArchived)
+                    }
                     
                     if task.isComplete {
-                        Button("Delete Task", role: .destructive) {
+                        Button {
                             withAnimation(Config.Animation.Default) {
                                 if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
                                     container.interactor.usertask.SetCurrentUsertask(nil)
                                 }
                                 container.interactor.usertask.DeleteUsertask(task)
                             }
+                        } label: {
+                            Text("Delete Task")
+                                .foregroundColor(.red)
                         }
                     } else {
-                        Button("Complete Task", role: .destructive) {
+                        Button("Complete Task") {
                             withAnimation(Config.Animation.Default) {
                                 if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
                                     container.interactor.usertask.SetCurrentUsertask(nil)

@@ -6,18 +6,22 @@
 //
 
 import Foundation
+import AppKit
 
 protocol Repository: UsertaskRepository, UserSettingRepository {}
 
 protocol UsertaskRepository {
-    func CreateTask(_ usertask: Usertask)
+    func CreateTask(_: Usertask)
     func GetCurrentTask() -> Usertask?
-    func SetCurrentTask(_ usertask: Usertask?)
-    func GetUsertask(_ id: UUID) -> Usertask?
-    func UpdateUsertask(_ usertask: Usertask)
-    func DeleteUsertask(_ usertask: Usertask)
+    func SetCurrentTask(_: Usertask?)
+    func GetUsertask(_: UUID) -> Usertask?
+    func UpdateUsertask(_: Usertask)
+    func DeleteUsertask(_: Usertask)
     func ListTasks() -> [Usertask]
-    func UpdateTasks(_ tasks: [Usertask])
+    func UpdateTasks(_: [Usertask])
 }
 
-protocol UserSettingRepository {}
+protocol UserSettingRepository {
+    func SetAppereance(_:Int)
+    func GetAppereance() -> NSAppearance?
+}
