@@ -5,29 +5,50 @@ struct MainView: View {
     @EnvironmentObject private var container: DIContainer
     @State private var router: Int = 0
     @State private var popupProfile: Bool = false
+    @State private var deleting: Bool = false
+    @State private var taskToDelete: Usertask? = nil
     private let sidebarWidth: CGFloat = 40
     private let sidebarPadding: CGFloat = 5
     private let iconFont: Font = .system(size: 20, weight: .light, design: .default)
     
     var body: some View {
-        HStack(spacing: 0) {
-            SidebarBlock
-            Separator(direction: .vertical, color: .section, size: 1)
-            switch router {
-            case 1:
-                MultipleTaskListView()
-            case 2:
-                SingleTaskListView(type: .archived)
-            case 3:
-                SingleTaskListView(type: .complete)
-            case 98:
-                ProfileView()
-            case 99:
-                SettingView()
-            case 100:
-                HomeView()
-            default:
-                MultipleTaskListView()
+        ZStack {
+            HStack(spacing: 0) {
+                SidebarBlock
+                Separator(direction: .vertical, color: .section, size: 1)
+                switch router {
+                    case 1:
+                        MultipleTaskListView()
+                    case 2:
+                        SingleTaskListView(type: .archived)
+                    case 3:
+                        SingleTaskListView(type: .complete)
+                    case 98:
+                        ProfileView()
+                    case 99:
+                        SettingView()
+                    case 100:
+                        HomeView()
+                    default:
+                        MultipleTaskListView()
+                }
+            }
+            .blur(radius: deleting ? 10 : 0)
+            .disabled(deleting && taskToDelete != nil)
+            
+            VStack(spacing: 0) {
+                if deleting && taskToDelete != nil {
+                    DeleteBlock(taskToDelete: taskToDelete!, deleting: $deleting)
+                }
+            }
+        }
+        .onReceive(container.appstate.userdata.deleteTask) { value in
+            taskToDelete = value
+            deleting = true
+        }
+        .onChange(of: deleting) { value in
+            if value == false {
+                taskToDelete = nil
             }
         }
     }

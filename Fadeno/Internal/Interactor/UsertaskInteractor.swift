@@ -37,7 +37,14 @@ extension UsertaskInteractor {
         Publish()
     }
     
+    func SendDeleteUsertask(_ task: Usertask) {
+        appstate.userdata.deleteTask.send(task)
+    }
+    
     func DeleteUsertask(_ task: Usertask) {
+        if repo.GetCurrentTask()?.id == task.id {
+            repo.SetCurrentTask(nil)
+        }
         repo.DeleteUsertask(task)
         Publish()
     }

@@ -41,6 +41,7 @@
 		A8E40E8A290BB00800BA4ED8 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E89290BB00800BA4ED8 /* SettingView.swift */; };
 		A8E40E8D290BBBDB00BA4ED8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */; };
 		A8E40E8F290BBDD800BA4ED8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E8E290BBDD800BA4ED8 /* HomeView.swift */; };
+		F6CA5C87290D119F00C33783 /* DeleteBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CA5C86290D119F00C33783 /* DeleteBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		A8E40E89290BB00800BA4ED8 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A8E40E8E290BBDD800BA4ED8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		F6CA5C86290D119F00C33783 /* DeleteBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 		A864DB4428EC399100B9DC46 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				F6CA5C86290D119F00C33783 /* DeleteBlock.swift */,
 				A8D6655D28F66AF500220661 /* TaskBlock.swift */,
 				A864DB3F28EC0D6700B9DC46 /* TaskRow.swift */,
 				A864DB8428F5140500B9DC46 /* SearchBlock.swift */,
@@ -331,6 +334,7 @@
 				A85C4E6B28DAB34000FB673A /* MarkdownContent.swift in Sources */,
 				A864DB3C28EBFF3200B9DC46 /* Mock.swift in Sources */,
 				A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */,
+				F6CA5C87290D119F00C33783 /* DeleteBlock.swift in Sources */,
 				A8375E23290C62D200D4E447 /* UserSettingDao.swift in Sources */,
 				A85C4E6928DA366D00FB673A /* Usertask.swift in Sources */,
 				A8E40E8D290BBBDB00BA4ED8 /* ProfileView.swift in Sources */,

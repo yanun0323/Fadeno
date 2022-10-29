@@ -12,7 +12,7 @@ struct ProfileView: View {
         Rectangle()
             .foregroundColor(.transparent)
             .overlay {
-                Text("Setting View")
+                Text("Profile View")
             }
     }
 }

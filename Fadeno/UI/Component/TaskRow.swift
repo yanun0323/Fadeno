@@ -6,7 +6,8 @@ struct TaskRow: View {
     @EnvironmentObject private var container: DIContainer
     @Environment(\.openURL) private var openURL
     @Binding private var usertask: Usertask
-    @State private var currentTask: Usertask? = nil
+    @Binding private var currentID: UUID
+    @Binding private var searched: Bool
     @State private var isPopover: Bool
     
     @State private var title: String
@@ -23,8 +24,10 @@ struct TaskRow: View {
         return usertask
     }
     
-    init(usertask: Binding<Usertask>, isPopover: Bool = false) {
+    init(usertask: Binding<Usertask>, currentID: Binding<UUID>, searched: Binding<Bool>, isPopover: Bool = false) {
         self._usertask = usertask
+        self._currentID = currentID
+        self._searched = searched
         self._isPopover = State(initialValue: isPopover)
         self._title = State(initialValue: usertask.wrappedValue.title)
         self._outline = State(initialValue: usertask.wrappedValue.outline)
@@ -34,11 +37,26 @@ struct TaskRow: View {
     
     var body: some View {
         ZStack {
-            HStack(spacing: 0) {
-                Rectangle()
-                    .foregroundColor(usertask.type.color)
-                    .frame(width: 5)
-                    .padding(.vertical, 1)
+            HStack(spacing: 10) {
+                if searched {
+                    VStack {
+                        Circle()
+                            .foregroundColor(usertask.type.color)
+                            .frame(width: 5, height: 5)
+                        Circle()
+                            .foregroundColor(usertask.type.color)
+                            .frame(width: 5, height: 5)
+                        Circle()
+                            .foregroundColor(usertask.type.color)
+                            .frame(width: 5, height: 5)
+                        
+                    }
+                } else {
+                    Rectangle()
+                        .foregroundColor(usertask.type.color)
+                        .frame(width: 5)
+                        .padding(.vertical, 1)
+                }
                 VStack(alignment: .leading, spacing: 0) {
                     TitleRowBlock
                     NoteRowBlock
@@ -52,7 +70,8 @@ struct TaskRow: View {
                 }
             }
             .padding(5)
-            .background((currentTask?.id == usertask.id && !isPopover) ? Color.section : nil)
+            .background(BackgroundStyle.background)
+            .colorMultiply((currentID == usertask.id && !isPopover) ? .cyan.opacity(0.8) : .white)
             .cornerRadius(isPopover ? 0 : 5)
         }
         .frame(height: isPopover ? 30 : 50)
@@ -69,9 +88,6 @@ struct TaskRow: View {
                 container.interactor.usertask.UpdateUsertask(cacheTask)
             })
             timer?.Init()
-        }
-        .onReceive(container.appstate.userdata.currentTask) { value in
-            currentTask = value
         }
         .onReceive(container.appstate.userdata.tasks) { _ in
             guard let task = container.interactor.usertask.GetUsertask(usertask.id) else { return }
@@ -227,7 +243,7 @@ extension TaskRow {
 
 struct TaskRow_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
+        VStack(spacing: 0) {
             Row(Usertask.preview.urgent)
             Row(Usertask.preview.archive)
             Row(Usertask.preview.normal)
@@ -238,7 +254,7 @@ struct TaskRow_Previews: PreviewProvider {
         .preferredColorScheme(.light)
         .background(.background)
         
-        VStack {
+        VStack(spacing: 0) {
             Row(Usertask.preview.urgent)
             Row(Usertask.preview.archive)
             Row(Usertask.preview.normal)
@@ -252,7 +268,7 @@ struct TaskRow_Previews: PreviewProvider {
     
     @MainActor
     static func Row(_ task: Usertask) -> some View {
-        TaskRow(usertask: .constant(task))
+        TaskRow(usertask: .constant(task), currentID: .constant(UUID()), searched: .constant(true))
         .environment(\.locale, .US)
         .inject(DIContainer.preview)
     }

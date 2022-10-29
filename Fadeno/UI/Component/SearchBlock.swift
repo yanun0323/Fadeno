@@ -11,17 +11,20 @@ import UIComponent
 struct SearchBlock: View {
     @EnvironmentObject var container: DIContainer
     @Binding var text: String
-    @State var timer: CacheTimer?
+    @State private var timer: CacheTimer?
+    @State private var input: String = ""
     var body: some View {
         TextField("Search...", text: Binding(get: {
-            text
+            input
         }, set: { value in
-            text = value
+            input = value
+            text = input.trimmingCharacters(in: .whitespaces)
             timer?.Refresh()
         }))
             .padding(.horizontal, 20)
             .padding(.vertical, 10)
             .textFieldStyle(.plain)
+            .lineLimit(1)
             .background {
                 Capsule()
                     .foregroundColor(.section)

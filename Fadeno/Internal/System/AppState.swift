@@ -19,12 +19,14 @@ class AppState {
 extension AppState {
     class UserData {
         var page: Int
-        var currentTask: PassthroughSubject<Usertask?, Never>
         var tasks: PassthroughSubject<[Usertask], Never>
+        var deleteTask: PassthroughSubject<Usertask, Never>
+        var currentTask: PassthroughSubject<Usertask?, Never>
         
-        init(page: Int = 0, tasks: [Usertask] = []) {
-            self.page = page
+        init() {
+            self.page = 0
             self.tasks = PassthroughSubject()
+            self.deleteTask = PassthroughSubject()
             self.currentTask = PassthroughSubject()
         }
     }

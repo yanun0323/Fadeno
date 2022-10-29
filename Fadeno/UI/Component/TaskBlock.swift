@@ -12,24 +12,38 @@ struct TaskBlock: View {
     @EnvironmentObject var container: DIContainer
     @Environment(\.locale) private var locale
     @State var tasks: [Usertask] = []
+    @State var currentID: UUID = UUID()
     
     @State private var hovered: Bool = false
     
     let type: Usertask.Tasktype
     @Binding var searchText: String
+    @State var searching: Bool = false
     let less: (Usertask,Usertask) -> Bool
     var isSingle: Bool = false
+    @State private var alerted: Bool = false
     
     var body: some View {
-        HStack(spacing: 0) {
-            if !isSingle {
-                LeftbarBlock
+        VStack(spacing: 0) {
+            TopbarBlock
+            HStack(spacing: 0) {
+                if !isSingle {
+//                    LeftbarBlock
+                }
+                TaskListBlock
             }
-            TaskListBlock
         }
         .onReceive(container.appstate.userdata.tasks) { value in
             tasks = container.interactor.usertask.SearchHandler(searchText, value.filter({ $0.type == self.type })).sorted(by: { less($0,$1) })
         }
+        .onReceive(container.appstate.userdata.currentTask) { value in
+            if let t = value {
+                currentID = t.id
+            }
+        }
+        .onChange(of: searchText, perform: { value in
+            searching = !value.isEmpty
+        })
         .onAppear {
             container.interactor.usertask.Publish()
         }
@@ -40,8 +54,6 @@ struct TaskBlock: View {
 extension TaskBlock {
     var count: Double {
         let c: Double = 4
-//        if container.appstate.usersetting.hideBlock { c = 3 }
-//        if container.appstate.usersetting.hideEmergency { c = 2 }
         return c
     }
 }
@@ -58,18 +70,14 @@ extension TaskBlock {
                         .foregroundColor(.primary75)
                         .lineLimit(1)
                         .minimumScaleFactor(0.5)
-                        .fixedSize()
-                        .rotationEffect(Angle(degrees: 90), anchor: .bottomLeading)
                         .multilineTextAlignment(.leading)
-                        .offset(x: 0, y: -25)
                 }
                 .frame(height: 25)
-                .clipped()
             } else {
                 Text(type.title)
                     .font(.title)
                     .fontWeight(.thin)
-                    .frame(width: 25)
+                    .frame(height: 25)
                     .minimumScaleFactor(1)
             }
             Spacer()
@@ -96,6 +104,7 @@ extension TaskBlock {
                 }
                 .frame(
                     width: 25, // height: container.appstate.usersetting.windowsHeight/count - 65,
+                    height: 70,
                     alignment: .topLeading
                 )
                 .clipped()
@@ -176,7 +185,7 @@ extension TaskBlock {
     
     var ListExistBlock: some DynamicViewContent {
         ForEach(tasks) { task in
-            TaskRow(usertask: .constant(task)).id(task.hashID)
+            TaskRow(usertask: .constant(task), currentID: $currentID, searched: $searching).id(task.hashID)
                 .transition(.opacity)
                 .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
                 .onDrag {
@@ -217,19 +226,7 @@ extension TaskBlock {
                         }
                     }
                     
-                    if task.isComplete {
-                        Button {
-                            withAnimation(Config.Animation.Default) {
-                                if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
-                                    container.interactor.usertask.SetCurrentUsertask(nil)
-                                }
-                                container.interactor.usertask.DeleteUsertask(task)
-                            }
-                        } label: {
-                            Text("Delete Task")
-                                .foregroundColor(.red)
-                        }
-                    } else {
+                    if !task.isComplete {
                         Button("Complete Task") {
                             withAnimation(Config.Animation.Default) {
                                 if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
@@ -239,6 +236,15 @@ extension TaskBlock {
                             }
                         }
                     }
+                    
+                    Button {
+                        withAnimation(Config.Animation.Default) {
+                            container.interactor.usertask.SendDeleteUsertask(task)
+                        }
+                    } label: {
+                        Text("Delete Task")
+                            .foregroundColor(.red)
+                    }
                 }
         }
     }
@@ -247,10 +253,10 @@ extension TaskBlock {
         ForEach(0...0, id: \.self) { text in
             HStack {
                 Spacer()
-                Text("No task here")
+                Text(searchText.isEmpty ? "":"Not found")
                     .font(.title2)
                     .fontWeight(.ultraLight)
-                    .foregroundColor(.primary25)
+                    .foregroundColor(.primary50)
                 Spacer()
             }
         }
@@ -286,7 +292,7 @@ extension TaskBlock {
 
 struct TasktypeBlock_Previews: PreviewProvider {
     static var previews: some View {
-        TaskBlock(tasks: [.preview.urgent, .preview.urgent1], type: .todo, searchText: .constant(""), less: {$0.order < $1.order})
+        TaskBlock(tasks: [.preview.urgent, .preview.urgent1], type: .todo, searchText: .constant("Todo"), less: {$0.order < $1.order})
             .inject(DIContainer.preview)
     }
 }
