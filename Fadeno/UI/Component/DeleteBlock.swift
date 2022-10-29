@@ -42,7 +42,6 @@ struct DeleteBlock: View {
         }
         .padding()
         .cornerRadius(15)
-        .shadow(radius: 2)
     }
 }
 

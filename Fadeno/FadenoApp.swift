@@ -21,6 +21,7 @@ struct FadenoApp: App {
         WindowGroup {
             ContentView()
                 .inject(container)
+                .TextediterCommand()
                 .frame(minWidth: 900, minHeight: 600)
                 .onAppear {
                     NSApp.appearance = container.interactor.usersetting.GetAppearance()

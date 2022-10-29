@@ -42,7 +42,7 @@ extension Usertask {
         }
         ```
         """, false, .urgent)
-        let urgent1 = Usertask(1, "Urgent 測試緊急標題1", "測試緊急概要", """
+        let urgent1 = Usertask(1, "Urgent 測試緊急標題1", "測試緊急概要 https://www.google.com", """
         ## 測試緊急內容
         - List A
             - inline list
@@ -68,7 +68,7 @@ extension Usertask {
         }
         ```
         """, false, .urgent)
-        let normal = Usertask(0, "Normal 測試進行標題", "測試進行概要", "## 測試進行內容", false, .normal)
+        let normal = Usertask(0, "Normal 測試進行標題", "https://www.google.com", "## 測試進行內容", false, .normal)
         let todo = Usertask(0, "Todo 測試代辦標題", "測試代辦概要", """
         ## 測試代辦內容
         - List A

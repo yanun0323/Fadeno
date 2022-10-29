@@ -12,6 +12,7 @@ struct MultipleTaskListView: View {
     @EnvironmentObject private var container: DIContainer
     @State var currentTask: Usertask? = nil
     @State var searchText: String = ""
+    private var blockList: [Usertask.Tasktype] = [.urgent, .normal, .todo]
     var body: some View {
         HStack(spacing: 0) {
             VStack(spacing: 0) {
@@ -19,15 +20,10 @@ struct MultipleTaskListView: View {
                     .padding(.vertical, 10)
                 GeometryReader { proxy in
                     VStack(spacing: 0) {
-                        ForEach(Usertask.Tasktype.allCases) { type in
-                            switch type {
-                            case .urgent, .normal, .todo: //, .custom:
-                                Separator(color: .section)
-                                    .padding(.vertical, 5)
-                                TaskBlock(type: type, searchText: $searchText, less: { $0.order < $1.order })
-                            default:
-                                EmptyView()
-                            }
+                        ForEach(blockList) { type in
+                            Separator(color: .section)
+                                .padding(.vertical, 5)
+                            TaskBlock(type: type, searchText: $searchText, less: { $0.order < $1.order })
                         }
                         Spacer()
                     }

@@ -16,6 +16,7 @@ struct TaskRow: View {
     
     @State private var detail = false
     @State private var linked = false
+    @State private var linkHover = false
     
     /* timer */
     @State private var timer: CacheTimer?
@@ -61,11 +62,10 @@ struct TaskRow: View {
                     TitleRowBlock
                     NoteRowBlock
                 }
-                Block(width: 5)
+                
                 if isPopover {
                     PopoverTrigerBlock
                 } else {
-                    Block(width: 10, height: 10)
                     ContentPageBlock
                 }
             }
@@ -126,7 +126,7 @@ extension TaskRow {
             Block(width: 5)
             
             if linked {
-                ButtonCustom(width: 30, height: 11, color: .primary25, radius: 1) {
+                ButtonCustom(width: 33, height: 13, color: usertask.type.color.opacity(linkHover ? 0.5 : 1), radius: 2) {
                     let str = usertask.outline.split(separator: " ").first(where: { $0.contains("https://") })
                     guard let separated = str?.split(separator: "/", maxSplits: 1, omittingEmptySubsequences: true) else { return }
                     if separated.isEmpty { return }
@@ -142,8 +142,13 @@ extension TaskRow {
                         .font(.caption)
                         .fontWeight(.light)
                         .foregroundColor(.white)
+                        .kerning(1)
+                        .offset(x: 1)
                 }
                 .padding(.trailing, 5)
+                .onHover { value in
+                    linkHover = value
+                }
             }
 
             TextField("Link or Description...", text: Binding(
@@ -156,8 +161,8 @@ extension TaskRow {
                     timer?.Refresh()
                 }))
                 .foregroundColor(.primary75)
-                .font(.system(size: 10, weight: .thin, design: .default))
-                .frame(height: 10)
+                .font(.system(size: 12, weight: .thin, design: .default))
+                .frame(height: 12)
                 .lineLimit(1)
                 .textFieldStyle(.plain)
         }
@@ -215,7 +220,11 @@ extension TaskRow {
     var ContentPageBlock: some View {
         ButtonCustom(width: 25, height: 25) {
             withAnimation {
-                container.interactor.usertask.SetCurrentUsertask(usertask)
+                if currentID == usertask.id {
+                    container.interactor.usertask.SetCurrentUsertask(nil)
+                } else {
+                    container.interactor.usertask.SetCurrentUsertask(usertask)
+                }
                 container.interactor.tasklist.ResetMarkdownFocus()
             }
         } content: {
@@ -244,7 +253,7 @@ extension TaskRow {
 struct TaskRow_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
-            Row(Usertask.preview.urgent)
+            Row(Usertask.preview.urgent1)
             Row(Usertask.preview.archive)
             Row(Usertask.preview.normal)
             Row(Usertask.preview.todo)
@@ -255,7 +264,7 @@ struct TaskRow_Previews: PreviewProvider {
         .background(.background)
         
         VStack(spacing: 0) {
-            Row(Usertask.preview.urgent)
+            Row(Usertask.preview.urgent1)
             Row(Usertask.preview.archive)
             Row(Usertask.preview.normal)
             Row(Usertask.preview.todo)

@@ -33,13 +33,12 @@ struct TaskBlock: View {
                 TaskListBlock
             }
         }
+        .background(.background)
         .onReceive(container.appstate.userdata.tasks) { value in
             tasks = container.interactor.usertask.SearchHandler(searchText, value.filter({ $0.type == self.type })).sorted(by: { less($0,$1) })
         }
         .onReceive(container.appstate.userdata.currentTask) { value in
-            if let t = value {
-                currentID = t.id
-            }
+            currentID = value?.id ?? UUID()
         }
         .onChange(of: searchText, perform: { value in
             searching = !value.isEmpty
@@ -85,6 +84,7 @@ extension TaskBlock {
         }
         .background(.background)
         .zIndex(2)
+        .padding(.bottom, 5)
     }
     var LeftbarBlock: some View {
         VStack(spacing: 5) {

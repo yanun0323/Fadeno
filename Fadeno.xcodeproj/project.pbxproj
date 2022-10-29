@@ -19,8 +19,6 @@
 		A8375E23290C62D200D4E447 /* UserSettingDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E22290C62D200D4E447 /* UserSettingDao.swift */; };
 		A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4328D9A78900FB673A /* FadenoApp.swift */; };
 		A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4528D9A78900FB673A /* ContentView.swift */; };
-		A85C4E4828D9A78B00FB673A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A85C4E4728D9A78B00FB673A /* Assets.xcassets */; };
-		A85C4E4B28D9A78B00FB673A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A85C4E4A28D9A78B00FB673A /* Preview Assets.xcassets */; };
 		A85C4E5D28DA305C00FB673A /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E5C28DA305C00FB673A /* DIContainer.swift */; };
 		A85C4E6928DA366D00FB673A /* Usertask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E6828DA366D00FB673A /* Usertask.swift */; };
 		A85C4E6B28DAB34000FB673A /* MarkdownContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E6A28DAB34000FB673A /* MarkdownContent.swift */; };
@@ -41,7 +39,9 @@
 		A8E40E8A290BB00800BA4ED8 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E89290BB00800BA4ED8 /* SettingView.swift */; };
 		A8E40E8D290BBBDB00BA4ED8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */; };
 		A8E40E8F290BBDD800BA4ED8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E40E8E290BBDD800BA4ED8 /* HomeView.swift */; };
+		F64D81F5290D248A001B5DAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A85C4E4728D9A78B00FB673A /* Assets.xcassets */; };
 		F6CA5C87290D119F00C33783 /* DeleteBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6CA5C86290D119F00C33783 /* DeleteBlock.swift */; };
+		F6E0F946290D3490008F4A7C /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E0F945290D3490008F4A7C /* Command.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,9 +58,9 @@
 		A85C4E4028D9A78900FB673A /* Fadeno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fadeno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A85C4E4328D9A78900FB673A /* FadenoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadenoApp.swift; sourceTree = "<group>"; };
 		A85C4E4528D9A78900FB673A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A85C4E4728D9A78B00FB673A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A85C4E4A28D9A78B00FB673A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A85C4E4C28D9A78B00FB673A /* Fadeno.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fadeno.entitlements; sourceTree = "<group>"; };
+		A85C4E4728D9A78B00FB673A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Fadeno/Resource/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		A85C4E4A28D9A78B00FB673A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Preview Assets.xcassets"; path = "Fadeno/Resource/Preview Assets.xcassets"; sourceTree = SOURCE_ROOT; };
+		A85C4E4C28D9A78B00FB673A /* Fadeno.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Fadeno.entitlements; path = Fadeno/Resource/Fadeno.entitlements; sourceTree = SOURCE_ROOT; };
 		A85C4E5C28DA305C00FB673A /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		A85C4E6828DA366D00FB673A /* Usertask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usertask.swift; sourceTree = "<group>"; };
 		A85C4E6A28DAB34000FB673A /* MarkdownContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownContent.swift; sourceTree = "<group>"; };
@@ -82,6 +82,7 @@
 		A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A8E40E8E290BBDD800BA4ED8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F6CA5C86290D119F00C33783 /* DeleteBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteBlock.swift; sourceTree = "<group>"; };
+		F6E0F945290D3490008F4A7C /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +122,7 @@
 				A85C4E5328DA173B00FB673A /* Resource */,
 			);
 			path = Fadeno;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		A85C4E5228DA173600FB673A /* Internal */ = {
 			isa = PBXGroup;
@@ -140,13 +141,14 @@
 		A85C4E5328DA173B00FB673A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				A8D6656828F66E5400220661 /* Localizable.strings */,
+				A85C4E4A28D9A78B00FB673A /* Preview Assets.xcassets */,
 				A85C4E4728D9A78B00FB673A /* Assets.xcassets */,
 				A85C4E4C28D9A78B00FB673A /* Fadeno.entitlements */,
-				A85C4E4A28D9A78B00FB673A /* Preview Assets.xcassets */,
-				A8D6656828F66E5400220661 /* Localizable.strings */,
 			);
-			path = Resource;
-			sourceTree = "<group>";
+			name = Resource;
+			path = Fadeno/Resource;
+			sourceTree = SOURCE_ROOT;
 		};
 		A85C4E5428DA174100FB673A /* UI */ = {
 			isa = PBXGroup;
@@ -218,6 +220,7 @@
 			children = (
 				A85C4E8028DAC9F200FB673A /* Extension.swift */,
 				A8D6656A28F68B2800220661 /* SwiftUIListRecoder.swift */,
+				F6E0F945290D3490008F4A7C /* Command.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -307,9 +310,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A85C4E4B28D9A78B00FB673A /* Preview Assets.xcassets in Resources */,
+				F64D81F5290D248A001B5DAA /* Assets.xcassets in Resources */,
 				A8D6656628F66E5400220661 /* Localizable.strings in Resources */,
-				A85C4E4828D9A78B00FB673A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +329,7 @@
 				A864DB4028EC0D6700B9DC46 /* TaskRow.swift in Sources */,
 				A864DB4328EC210800B9DC46 /* Config.swift in Sources */,
 				A805FFAE2908F99100918B49 /* Repository.swift in Sources */,
+				F6E0F946290D3490008F4A7C /* Command.swift in Sources */,
 				A8E40E8A290BB00800BA4ED8 /* SettingView.swift in Sources */,
 				A85C4E5D28DA305C00FB673A /* DIContainer.swift in Sources */,
 				A805FFAA2908E17100918B49 /* MarkdownInteractor.swift in Sources */,
@@ -364,7 +367,8 @@
 				A8D6656928F66E7700220661 /* zh-Hant */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
+			path = Fadeno/Resource;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXVariantGroup section */
 
@@ -373,6 +377,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -404,6 +410,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_ASSET_PATHS = "\"Fadeno/Resource\"";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -420,7 +427,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -434,6 +441,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -465,6 +474,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_ASSET_PATHS = "\"Fadeno/Resource\"";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -475,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -489,21 +499,35 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Fadeno/Resource/Fadeno.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Fadeno/Resource\"";
+				CURRENT_PROJECT_VERSION = 1F03Y;
+				DEVELOPMENT_ASSET_PATHS = "Fadeno/Resource Fadeno/Resource/Assets.xcassets Fadeno/Resource/en.lproj/Localizable.strings";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.framework *.gch *.xcode* (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj";
 				GENERATE_INFOPLIST_FILE = YES;
+				INCLUDED_SOURCE_FILE_NAMES = (
+					Fadeno/Resource,
+					Fadeno/Resource/Assets.xcassets,
+					Fadeno/Resource/en.lproj/Localizable.strings,
+				);
+				INFOPLIST_KEY_CFBundleDisplayName = Fadeno;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanunyang.Fadeno;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -516,21 +540,35 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Fadeno/Resource/Fadeno.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Fadeno/Resource\"";
+				CURRENT_PROJECT_VERSION = 1F03Y;
+				DEVELOPMENT_ASSET_PATHS = "Fadeno/Resource Fadeno/Resource/Assets.xcassets Fadeno/Resource/en.lproj/Localizable.strings";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES = "*.nib *.framework *.gch *.xcode* (*) .DS_Store CVS .svn .git .hg *.pbproj *.pbxproj";
 				GENERATE_INFOPLIST_FILE = YES;
+				INCLUDED_SOURCE_FILE_NAMES = (
+					Fadeno/Resource,
+					Fadeno/Resource/Assets.xcassets,
+					Fadeno/Resource/en.lproj/Localizable.strings,
+				);
+				INFOPLIST_KEY_CFBundleDisplayName = Fadeno;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = "";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Automatic;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MARKETING_VERSION = 0.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanunyang.Fadeno;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
