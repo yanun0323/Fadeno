@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import UIComponent
 
 struct ProfileView: View {
+    @State private var text = ""
     var body: some View {
-        Rectangle()
-            .foregroundColor(.transparent)
-            .overlay {
-                Text("Profile View")
-            }
+        TextEditorView(text: $text)
+        
+        TextField("ttt", text: $text)
+        Block()
     }
 }
 

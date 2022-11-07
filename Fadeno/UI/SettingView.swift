@@ -10,39 +10,118 @@ import UIComponent
 import AppKit
 
 struct SettingView: View {
-    @EnvironmentObject var container: DIContainer
-    @State var appearance: NSAppearance? = nil
+    @EnvironmentObject private var container: DIContainer
+    @State private var appearance: NSAppearance? = nil
+    @State private var clickUpToken = ""
+    @State private var clickUpTokenConfirm = false
+    @State private var clickUpTokenOK = false
+    @State private var clickUpTokenVerifying = false
+    @State private var timer: CacheTimer? = nil
+    @State private var initial = true
+    
+    private var token: String {
+        clickUpToken
+    }
+    
+    @State var current: [Usertask.Tasktype] = [.archived, .normal]
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             ThemeBlock
-                .padding()
-            Rectangle()
-                .foregroundColor(.transparent)
-                .overlay {
-                    Text("Setting View")
-                }
+                .padding(.top, 20)
+            ClickupTokenBlock
+            Block()
         }
         .onAppear {
+            if !initial { return }
             appearance = container.interactor.usersetting.GetAppearance()
+            clickUpToken = container.interactor.clickup.GetToken()
+            clickUpTokenConfirm = !clickUpToken.isEmpty
+            clickUpTokenOK = !clickUpToken.isEmpty
+            timer = CacheTimer(countdown: 2, timeInterval: 1, action: {
+                container.interactor.clickup.VerifyToken(token)
+            })
+            timer?.Activate()
         }
         .onReceive(container.appstate.usersetting.appearance) { value in
             appearance = value
+        }
+        .onReceive(container.appstate.clickup.tokenVerify) { value in
+            clickUpTokenVerifying = false
+            clickUpTokenOK = value
         }
     }
 }
 
 // MARK: ViewBlock
 extension SettingView {
+    var ClickupTokenBlock: some View {
+        Section(title: "clickup.token") {
+            VStack {
+                HStack {
+                    if clickUpTokenVerifying {
+                        LoadingCircle(color: .yellow ,size: 12, lineWidth: 2, speed: 1)
+                            .colorMultiply(.yellow)
+                        Text("Verifying")
+                            .foregroundColor(.yellow)
+                            .colorMultiply(.yellow)
+                    } else if clickUpTokenOK {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundColor(.green)
+                            .colorMultiply(.green)
+                        Text("OK")
+                            .foregroundColor(.green)
+                            .colorMultiply(.green)
+                    } else {
+                        Image(systemName: "multiply")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundColor(.red)
+                            .colorMultiply(.red)
+                        Text("Invalid Token")
+                            .foregroundColor(.red)
+                            .colorMultiply(.red)
+                    }
+                }
+                HStack {
+                    SecureField("clickup.token.input", text: Binding(
+                        get: {
+                            clickUpToken
+                        }, set: { value in
+                            clickUpToken = value
+                            if initial {
+                                initial = false
+                                return
+                            }
+                            timer?.Refresh()
+                            clickUpTokenOK = false
+                            clickUpTokenVerifying = true
+                        }))
+                        .textFieldStyle(.plain)
+                        .padding(5)
+                        .background(.background)
+                        .cornerRadius(5)
+                        .disabled(clickUpTokenConfirm)
+                    ButtonCustom(width: 70, height: 25) {
+                        clickUpTokenConfirm.toggle()
+                    } content: {
+                        Text(clickUpTokenConfirm ? "clickup.token.input.cancel" : "clickup.token.input.lock")
+                    }
+                    .background(.background)
+                    .cornerRadius(5)
+                    .shadow(radius: 1)
+                    .disabled(!clickUpTokenConfirm && !clickUpTokenOK)
+
+                }
+            }
+        }
+    }
+}
+
+// MARK: ThemeBlock
+extension SettingView {
     var ThemeBlock: some View {
-        VStack(spacing: 5) {
-            HStack {
-                Text("Appreance")
-                    .foregroundColor(.primary50)
-                    .font(.caption)
-                Spacer()
-            }.padding(.horizontal)
-            HStack(spacing: 20) {
-                Spacer()
+        Section(title: "setting.appearance") {
+            HStack(spacing: 40) {
                 VStack(spacing: 10) {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
                         withAnimation(Config.Animation.Default) {
@@ -75,7 +154,7 @@ extension SettingView {
                             .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 3))
                             .opacity(appearance == nil ? 1 : 0)
                     )
-                    Text("System")
+                    Text("setting.system")
                 }
                 VStack(spacing: 10)  {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
@@ -91,7 +170,7 @@ extension SettingView {
                             .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 3))
                             .opacity(appearance?.name == .aqua ? 1 : 0)
                 )
-                    Text("Light")
+                    Text("setting.light")
                 }
                 VStack(spacing: 10)  {
                     ButtonCustom(width: 60, height: 40, radius: 5) {
@@ -107,14 +186,9 @@ extension SettingView {
                             .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 2.5))
                             .opacity(appearance?.name == .darkAqua ? 1 : 0)
                     )
-                    Text("Dark")
+                    Text("setting.dark")
                 }
-                Spacer()
-
             }
-            .padding(.vertical)
-            .background(Color.primary.opacity(0.05))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
     
@@ -192,6 +266,28 @@ extension SettingView {
                 }
             }
             .clipShape(Rectangle())
+    }
+}
+
+extension SettingView {
+    func Section(title: LocalizedStringKey, content: @escaping () -> some View) -> some View {
+        VStack(spacing: 5) {
+            HStack {
+                Text(title)
+                    .foregroundColor(.primary50)
+                    .font(.caption)
+                Spacer()
+            }.padding(.horizontal, 10)
+            HStack(spacing: 0, content: {
+                Spacer()
+                content()
+                Spacer()
+            })
+            .padding()
+            .background(Color.section)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
+        }
+        .padding(.horizontal)
     }
 }
 

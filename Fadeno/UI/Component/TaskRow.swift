@@ -74,7 +74,7 @@ struct TaskRow: View {
             .colorMultiply((currentID == usertask.id && !isPopover) ? .cyan.opacity(0.8) : .white)
             .cornerRadius(isPopover ? 0 : 5)
         }
-        .frame(height: isPopover ? 30 : 50)
+        .frame(height: isPopover ? 30 : 45)
         .lineLimit(1)
         .truncationMode(.tail)
         .background(.background)
@@ -84,12 +84,12 @@ struct TaskRow: View {
                 return
             }
             timer = CacheTimer(countdown: 3, timeInterval: 0.1, action: {
-                print("usertask saved, \(usertask.title)")
                 container.interactor.usertask.UpdateUsertask(cacheTask)
             })
-            timer?.Init()
+            timer?.Activate()
         }
         .onReceive(container.appstate.userdata.tasks) { _ in
+            print("Task Row \(usertask.type.title) \(usertask.order) recive tasks publish")
             guard let task = container.interactor.usertask.GetUsertask(usertask.id) else { return }
             usertask = task
             UpdateSelf()
@@ -113,7 +113,7 @@ extension TaskRow {
                     usertask.title = title
                     timer?.Refresh()
                 }))
-                .font(.system(size: 14, weight: .light, design: .default))
+                .font(.system(size: 14, weight: (title.isEmpty ? .ultraLight : .light), design: .default))
                 .lineLimit(1)
                 .textFieldStyle(.plain)
             
@@ -161,7 +161,7 @@ extension TaskRow {
                     timer?.Refresh()
                 }))
                 .foregroundColor(.primary75)
-                .font(.system(size: 12, weight: .thin, design: .default))
+                .font(.system(size: 12, weight: (outline.isEmpty ? .ultraLight : .light), design: .default))
                 .frame(height: 12)
                 .lineLimit(1)
                 .textFieldStyle(.plain)
@@ -230,7 +230,7 @@ extension TaskRow {
         } content: {
             Image(systemName: "chevron.right")
                 .font(.title2)
-                .foregroundColor(.primary50.opacity(0.75))
+                .foregroundColor(usertask.content.isEmpty ? .section : .primary50.opacity(0.75))
         }
 
     }
@@ -257,6 +257,7 @@ struct TaskRow_Previews: PreviewProvider {
             Row(Usertask.preview.archive)
             Row(Usertask.preview.normal)
             Row(Usertask.preview.todo)
+            Row(Usertask(0, "", "", "", false, .custom))
         }
         .frame(width: 300)
         .padding()
@@ -268,6 +269,7 @@ struct TaskRow_Previews: PreviewProvider {
             Row(Usertask.preview.archive)
             Row(Usertask.preview.normal)
             Row(Usertask.preview.todo)
+            Row(Usertask(0, "", "", "", false, .custom))
         }
         .frame(width: 300)
         .padding()

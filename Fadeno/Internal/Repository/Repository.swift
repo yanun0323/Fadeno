@@ -8,20 +8,29 @@
 import Foundation
 import AppKit
 
-protocol Repository: UsertaskRepository, UserSettingRepository {}
+protocol Repository: UsertaskRepository, UserSettingRepository, ClickupRepository {}
 
 protocol UsertaskRepository {
-    func CreateTask(_: Usertask)
+    func CreateTask(_:Usertask)
     func GetCurrentTask() -> Usertask?
-    func SetCurrentTask(_: Usertask?)
-    func GetUsertask(_: UUID) -> Usertask?
-    func UpdateUsertask(_: Usertask)
-    func DeleteUsertask(_: Usertask)
+    func SetCurrentTask(_:Usertask?)
+    func GetUsertask(_:UUID) -> Usertask?
+    func UpdateUsertask(_:Usertask)
+    func DeleteUsertask(_:Usertask)
     func ListTasks() -> [Usertask]
-    func UpdateTasks(_: [Usertask])
+    func UpdateTasks(_:[Usertask])
 }
 
 protocol UserSettingRepository {
     func SetAppereance(_:Int)
     func GetAppereance() -> NSAppearance?
+}
+
+protocol ClickupRepository {
+    func SetClickupAPIToken(_:String)
+    func GetClickupAPIToken() -> String
+    func VerifyClickupAPIToken(_:String) -> Bool
+    func GetClickupTeam() -> Clickup.Team?
+    func GetClickupUser() -> Clickup.User?
+    func ListClickupTasks() -> [Clickup.Task]
 }

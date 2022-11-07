@@ -25,16 +25,20 @@ struct TaskBlock: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            TopbarBlock
+            if !isSingle {
+//                TopbarBlock
+            }
             HStack(spacing: 0) {
                 if !isSingle {
-//                    LeftbarBlock
+                    LeftbarBlock
                 }
                 TaskListBlock
             }
         }
         .background(.background)
         .onReceive(container.appstate.userdata.tasks) { value in
+            if tasks.count == value.count { return }
+            print("Task Block \(type.title) recive tasks publish")
             tasks = container.interactor.usertask.SearchHandler(searchText, value.filter({ $0.type == self.type })).sorted(by: { less($0,$1) })
         }
         .onReceive(container.appstate.userdata.currentTask) { value in
@@ -44,7 +48,7 @@ struct TaskBlock: View {
             searching = !value.isEmpty
         })
         .onAppear {
-            container.interactor.usertask.Publish()
+            container.interactor.usertask.PublishAll()
         }
     }
 }
@@ -204,7 +208,7 @@ extension TaskBlock {
                 }
                 .contextMenu {
                     if task.isArchived || task.isComplete {
-                        Button("Move To Todo") {
+                        Button("contextmenu.task.move") {
                             withAnimation(Config.Animation.Default) {
                                 if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
                                     container.interactor.usertask.SetCurrentUsertask(nil)
@@ -216,7 +220,7 @@ extension TaskBlock {
                     }
                     
                     if !task.isArchived {
-                        Button("Archive Task") {
+                        Button("contextmenu.task.archive") {
                             withAnimation(Config.Animation.Default) {
                                 if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
                                     container.interactor.usertask.SetCurrentUsertask(nil)
@@ -227,7 +231,7 @@ extension TaskBlock {
                     }
                     
                     if !task.isComplete {
-                        Button("Complete Task") {
+                        Button("contextmenu.task.complete") {
                             withAnimation(Config.Animation.Default) {
                                 if container.interactor.usertask.GetCurrentUsertask()?.id == task.id {
                                     container.interactor.usertask.SetCurrentUsertask(nil)
@@ -242,7 +246,7 @@ extension TaskBlock {
                             container.interactor.usertask.SendDeleteUsertask(task)
                         }
                     } label: {
-                        Text("Delete Task")
+                        Text("contextmenu.task.delete")
                             .foregroundColor(.red)
                     }
                 }

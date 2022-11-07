@@ -24,7 +24,3 @@ extension NSTextView {
         }
     }
 }
-
-extension UserDefaults {
-    
-}

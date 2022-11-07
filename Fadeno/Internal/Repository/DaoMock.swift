@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DaoMock: UserSettingDao {
+final class DaoMock: UserSettingDao, ClickupDao {
     var tasks: [Usertask] = [
         .preview.archive,
         .preview.normal,

@@ -7,3 +7,25 @@
 "custom" = "自訂";
 "archived" = "封存";
 "completed" = "完成";
+
+"contextmenu.task.move" = "移動到待辦區";
+"contextmenu.task.archive" = "封存";
+"contextmenu.task.complete" = "完成";
+"contextmenu.task.delete" = "刪除";
+
+"setting.appearance" = "外觀";
+"setting.system" = "系統";
+"setting.light" = "淺色";
+"setting.dark" = "深色";
+
+"markdown.mode.edit" = "Markdown 編輯模式";
+"markdown.mode.view" = "Markdown 檢視模式";
+"markdown.mode.toggle.view" = "按下 ⌘ + Return 退出編輯";
+"markdown.mode.toggle.edit" = "按下 Return / ⌘ + Return 進行編輯";
+"markdown.lastupdate" = "最後更新 ";
+
+"clickup.token" = "Clickup Token";
+"clickup.token.input" = "請輸入你的 clickup token";
+"clickup.token.input.lock" = "鎖定";
+"clickup.token.input.cancel" = "取消";
+

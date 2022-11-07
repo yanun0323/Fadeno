@@ -48,7 +48,7 @@ struct MarkdownContent<V>: View where V: View {
                     container.interactor.usertask.UpdateUsertask(cacheTask!)
                 }
             })
-            timer?.Init()
+            timer?.Activate()
         }
     }
 }
@@ -58,9 +58,9 @@ extension MarkdownContent {
     var infoBlock: some View {
         HStack {
             VStack(alignment: .leading, spacing: 0) {
-                Text(edit ? "Markdown 編輯模式" : "Markdown 檢視模式")
+                Text(edit ? "markdown.mode.edit" : "markdown.mode.view")
                     .foregroundColor(edit ? .accentColor : nil)
-                Text(edit ? "按下 ⌘ + Return 退出編輯" : "按下 Return / ⌘ + Return 進行編輯")
+                Text(edit ? "markdown.mode.toggle.view" : "markdown.mode.toggle.edit")
                     .foregroundColor(.gray)
                     .font(.caption)
                     .animation(.none, value: edit)
@@ -68,10 +68,13 @@ extension MarkdownContent {
             Spacer()
             VStack(alignment: .trailing, spacing: 0) {
                 Spacer()
-                Text(currentTask!.updateTime.String("最後更新： YYYY.MM.dd  EE  HH:mm:ss", .TW))
-                    .foregroundColor(.gray)
-                    .font(.subheadline)
-                    .monospacedDigit()
+                HStack(spacing: 0) {
+                    Text("markdown.lastupdate")
+                    Text(currentTask!.updateTime.String("YYYY.MM.dd EE  HH:mm:ss", .current))
+                        .foregroundColor(.gray)
+                        .font(.subheadline)
+                        .monospacedDigit()
+                }
             }
         }
         .padding()
@@ -84,7 +87,7 @@ extension MarkdownContent {
     var mdBlock: some View {
         ZStack {
             if currentTask != nil {
-                TextEditor(text: Binding(get: {
+                TextEditorView(text: Binding(get: {
                     currentTask!.content
                 }, set: { value in
                     currentTask!.content = value

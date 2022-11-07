@@ -7,3 +7,24 @@
 "custom" = "Custom";
 "archived" = "Archived";
 "completed" = "Completed";
+
+"contextmenu.task.move" = "Move to Todo";
+"contextmenu.task.archive" = "Archive";
+"contextmenu.task.complete" = "Complete";
+"contextmenu.task.delete" = "Delete";
+
+"setting.appearance" = "Appearance";
+"setting.system" = "System";
+"setting.light" = "Light";
+"setting.dark" = "Dark";
+
+"markdown.mode.edit" = "Markdown Edit Mode";
+"markdown.mode.view" = "Markdown View Mode";
+"markdown.mode.toggle.view" = "Press ⌘ + Return To Exit Edit Mode";
+"markdown.mode.toggle.edit" = "Press Return / ⌘ + Return To Edit";
+"markdown.lastupdate" = "Last update ";
+
+"clickup.token" = "Clickup Token";
+"clickup.token.input" = "Please input your clickup token";
+"clickup.token.input.lock" = "Lock";
+"clickup.token.input.cancel" = "Cancel";

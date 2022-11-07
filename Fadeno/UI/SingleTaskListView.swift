@@ -22,7 +22,7 @@ struct SingleTaskListView: View {
                     .padding(.vertical, 10)
                 Separator(color: .section)
                     .padding(.vertical, 5)
-                TaskBlock(type: type, searchText: $searchText, less: { $0.updateTime < $1.updateTime }, isSingle: true)
+                TaskBlock(type: type, searchText: $searchText, less: { $0.order < $1.order }, isSingle: true)
             }
             .padding(.horizontal, 10)
             .background(.background)

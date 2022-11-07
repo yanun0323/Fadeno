@@ -9,7 +9,7 @@ import SwiftUI
 import UIComponent
 
 extension View {
-    func TextediterCommand() -> some View {
+    func TextEditerCommand() -> some View {
         self
             .hotkey(key: .kVK_ANSI_A, keyBase: [.command]) {
                 NSApp.sendAction(#selector(NSText.selectAll(_:)), to: nil, from: nil)

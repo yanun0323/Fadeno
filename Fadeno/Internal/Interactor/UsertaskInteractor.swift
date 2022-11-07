@@ -28,13 +28,13 @@ extension UsertaskInteractor {
     
     func SetCurrentUsertask(_ task: Usertask?) {
         repo.SetCurrentTask(task)
-        Publish()
+        PublishAll()
     }
     
     func UpdateUsertask(_ task: Usertask) {
         task.RefreshUpdateDate()
         repo.UpdateUsertask(task)
-        Publish()
+        PublishCurrentTask()
     }
     
     func SendDeleteUsertask(_ task: Usertask) {
@@ -46,7 +46,7 @@ extension UsertaskInteractor {
             repo.SetCurrentTask(nil)
         }
         repo.DeleteUsertask(task)
-        Publish()
+        PublishAll()
     }
     
     func MoveUserTask(_ task: Usertask, toOrder: Int = 0, toType: Usertask.Tasktype) {
@@ -67,18 +67,15 @@ extension UsertaskInteractor {
         task.order = toOrder
         task.type = toType
         repo.UpdateUsertask(task)
-        Publish()
+        PublishAll()
     }
     
     /**
      Create a new usertask after the type of last order
      */
     func CreateUsertask(_ task: Usertask) {
-        print("create \(task.hashID)")
         repo.CreateTask(task)
-        print("create done")
-        Publish()
-        print("create fetch done")
+        PublishAll()
     }
     
     /**
@@ -93,7 +90,7 @@ extension UsertaskInteractor {
         }
         repo.CreateTask(task)
         repo.UpdateUsertask(task)
-        Publish()
+        PublishAll()
     }
     
     func RemoveUsertask(_ task: Usertask) {
@@ -107,14 +104,19 @@ extension UsertaskInteractor {
             }
         }
         repo.UpdateTasks(tasks)
-        Publish()
+        PublishAll()
     }
 }
 
 extension UsertaskInteractor {
-    func Publish() {
+    func PublishAll() {
         DispatchQueue.main.async {
             appstate.userdata.tasks.send(repo.ListTasks())
+            appstate.userdata.currentTask.send(repo.GetCurrentTask())
+        }
+    }
+    func PublishCurrentTask() {
+        DispatchQueue.main.async {
             appstate.userdata.currentTask.send(repo.GetCurrentTask())
         }
     }

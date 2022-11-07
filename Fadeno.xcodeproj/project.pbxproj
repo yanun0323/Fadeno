@@ -13,10 +13,17 @@
 		A805FFB82909BFDE00918B49 /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFB72909BFDE00918B49 /* Dao.swift */; };
 		A805FFBA2909C0C300918B49 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFB92909C0C300918B49 /* PersistenceController.swift */; };
 		A805FFBC2909C31000918B49 /* UsertaskMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFBB2909C31000918B49 /* UsertaskMO.swift */; };
+		A8301A88291014C100E11440 /* ClickupVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A87291014C100E11440 /* ClickupVIew.swift */; };
+		A8301A8A2910158500E11440 /* ClickupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A892910158500E11440 /* ClickupInteractor.swift */; };
+		A8301A8C29105C8400E11440 /* LoadingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A8B29105C8400E11440 /* LoadingCircle.swift */; };
+		A8301A8E29108B6000E11440 /* ClickupDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A8D29108B6000E11440 /* ClickupDao.swift */; };
+		A8301A902910C81800E11440 /* ClickupMyTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A8F2910C81800E11440 /* ClickupMyTaskView.swift */; };
+		A8301A922911A80100E11440 /* Clickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A912911A80100E11440 /* Clickup.swift */; };
 		A8357F3828FC677800B0CDC8 /* MultipleTaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */; };
 		A8375E1C290BEC3100D4E447 /* UserSettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */; };
 		A8375E21290C621F00D4E447 /* UsertaskDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E20290C621F00D4E447 /* UsertaskDao.swift */; };
 		A8375E23290C62D200D4E447 /* UserSettingDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E22290C62D200D4E447 /* UserSettingDao.swift */; };
+		A85B03B02913D23E005B0D5E /* ClickupTaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85B03AF2913D23E005B0D5E /* ClickupTaskRow.swift */; };
 		A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4328D9A78900FB673A /* FadenoApp.swift */; };
 		A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E4528D9A78900FB673A /* ContentView.swift */; };
 		A85C4E5D28DA305C00FB673A /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85C4E5C28DA305C00FB673A /* DIContainer.swift */; };
@@ -31,7 +38,7 @@
 		A86FEB3428E459B800E42FEE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3328E459B800E42FEE /* MainView.swift */; };
 		A86FEB3628E57F7800E42FEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3528E57F7800E42FEE /* AppState.swift */; };
 		A86FEB3A28E5804800E42FEE /* UsertaskInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3928E5804800E42FEE /* UsertaskInteractor.swift */; };
-		A8C1E78128E5ABEC001878EF /* Database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8C1E77F28E5ABEC001878EF /* Database.xcdatamodeld */; };
+		A8C1E78128E5ABEC001878EF /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8C1E77F28E5ABEC001878EF /* database.xcdatamodeld */; };
 		A8D6655E28F66AF500220661 /* TaskBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6655D28F66AF500220661 /* TaskBlock.swift */; };
 		A8D6656628F66E5400220661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8D6656828F66E5400220661 /* Localizable.strings */; };
 		A8D6656B28F68B2800220661 /* SwiftUIListRecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6656A28F68B2800220661 /* SwiftUIListRecoder.swift */; };
@@ -51,10 +58,17 @@
 		A805FFB72909BFDE00918B49 /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		A805FFB92909C0C300918B49 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		A805FFBB2909C31000918B49 /* UsertaskMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskMO.swift; sourceTree = "<group>"; };
+		A8301A87291014C100E11440 /* ClickupVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupVIew.swift; sourceTree = "<group>"; };
+		A8301A892910158500E11440 /* ClickupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupInteractor.swift; sourceTree = "<group>"; };
+		A8301A8B29105C8400E11440 /* LoadingCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCircle.swift; sourceTree = "<group>"; };
+		A8301A8D29108B6000E11440 /* ClickupDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupDao.swift; sourceTree = "<group>"; };
+		A8301A8F2910C81800E11440 /* ClickupMyTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupMyTaskView.swift; sourceTree = "<group>"; };
+		A8301A912911A80100E11440 /* Clickup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clickup.swift; sourceTree = "<group>"; };
 		A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleTaskListView.swift; sourceTree = "<group>"; };
 		A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingInteractor.swift; sourceTree = "<group>"; };
 		A8375E20290C621F00D4E447 /* UsertaskDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskDao.swift; sourceTree = "<group>"; };
 		A8375E22290C62D200D4E447 /* UserSettingDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingDao.swift; sourceTree = "<group>"; };
+		A85B03AF2913D23E005B0D5E /* ClickupTaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupTaskRow.swift; sourceTree = "<group>"; };
 		A85C4E4028D9A78900FB673A /* Fadeno.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fadeno.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A85C4E4328D9A78900FB673A /* FadenoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadenoApp.swift; sourceTree = "<group>"; };
 		A85C4E4528D9A78900FB673A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,10 +86,10 @@
 		A86FEB3328E459B800E42FEE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A86FEB3528E57F7800E42FEE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		A86FEB3928E5804800E42FEE /* UsertaskInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskInteractor.swift; sourceTree = "<group>"; };
-		A8C1E78028E5ABEC001878EF /* Database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Database.xcdatamodel; sourceTree = "<group>"; };
+		A8C1E78028E5ABEC001878EF /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
 		A8D6655D28F66AF500220661 /* TaskBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBlock.swift; sourceTree = "<group>"; };
-		A8D6656728F66E5400220661 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A8D6656928F66E7700220661 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A8D6656728F66E5400220661 /* en */ = {isa = PBXFileReference; explicitFileType = text.yaml; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A8D6656928F66E7700220661 /* zh-Hant */ = {isa = PBXFileReference; explicitFileType = text.yaml; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A8D6656A28F68B2800220661 /* SwiftUIListRecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIListRecoder.swift; sourceTree = "<group>"; };
 		A8E40E87290A661300BA4ED8 /* SingleTaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTaskListView.swift; sourceTree = "<group>"; };
 		A8E40E89290BB00800BA4ED8 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
@@ -160,6 +174,8 @@
 				A8E40E87290A661300BA4ED8 /* SingleTaskListView.swift */,
 				A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */,
 				A8E40E89290BB00800BA4ED8 /* SettingView.swift */,
+				A8301A87291014C100E11440 /* ClickupVIew.swift */,
+				A8301A8F2910C81800E11440 /* ClickupMyTaskView.swift */,
 				A864DB4428EC399100B9DC46 /* Component */,
 			);
 			path = UI;
@@ -179,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				A85C4E6828DA366D00FB673A /* Usertask.swift */,
+				A8301A912911A80100E11440 /* Clickup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,6 +206,7 @@
 				A86FEB3928E5804800E42FEE /* UsertaskInteractor.swift */,
 				A805FFA92908E17100918B49 /* MarkdownInteractor.swift */,
 				A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */,
+				A8301A892910158500E11440 /* ClickupInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -200,6 +218,7 @@
 				A805FFB72909BFDE00918B49 /* Dao.swift */,
 				A8375E20290C621F00D4E447 /* UsertaskDao.swift */,
 				A8375E22290C62D200D4E447 /* UserSettingDao.swift */,
+				A8301A8D29108B6000E11440 /* ClickupDao.swift */,
 				A805FFB12908FAB800918B49 /* DaoMock.swift */,
 			);
 			path = Repository;
@@ -208,7 +227,7 @@
 		A85C4E5A28DA301700FB673A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				A8C1E77F28E5ABEC001878EF /* Database.xcdatamodeld */,
+				A8C1E77F28E5ABEC001878EF /* database.xcdatamodeld */,
 				A805FFBB2909C31000918B49 /* UsertaskMO.swift */,
 				A805FFB92909C0C300918B49 /* PersistenceController.swift */,
 			);
@@ -241,6 +260,8 @@
 				A864DB3F28EC0D6700B9DC46 /* TaskRow.swift */,
 				A864DB8428F5140500B9DC46 /* SearchBlock.swift */,
 				A85C4E6A28DAB34000FB673A /* MarkdownContent.swift */,
+				A8301A8B29105C8400E11440 /* LoadingCircle.swift */,
+				A85B03AF2913D23E005B0D5E /* ClickupTaskRow.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -326,20 +347,27 @@
 				A86FEB3428E459B800E42FEE /* MainView.swift in Sources */,
 				A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */,
 				A805FFB22908FAB800918B49 /* DaoMock.swift in Sources */,
+				A8301A922911A80100E11440 /* Clickup.swift in Sources */,
 				A864DB4028EC0D6700B9DC46 /* TaskRow.swift in Sources */,
 				A864DB4328EC210800B9DC46 /* Config.swift in Sources */,
 				A805FFAE2908F99100918B49 /* Repository.swift in Sources */,
+				A85B03B02913D23E005B0D5E /* ClickupTaskRow.swift in Sources */,
 				F6E0F946290D3490008F4A7C /* Command.swift in Sources */,
 				A8E40E8A290BB00800BA4ED8 /* SettingView.swift in Sources */,
 				A85C4E5D28DA305C00FB673A /* DIContainer.swift in Sources */,
+				A8301A8C29105C8400E11440 /* LoadingCircle.swift in Sources */,
 				A805FFAA2908E17100918B49 /* MarkdownInteractor.swift in Sources */,
-				A8C1E78128E5ABEC001878EF /* Database.xcdatamodeld in Sources */,
+				A8C1E78128E5ABEC001878EF /* database.xcdatamodeld in Sources */,
 				A85C4E6B28DAB34000FB673A /* MarkdownContent.swift in Sources */,
 				A864DB3C28EBFF3200B9DC46 /* Mock.swift in Sources */,
 				A85C4E4428D9A78900FB673A /* FadenoApp.swift in Sources */,
 				F6CA5C87290D119F00C33783 /* DeleteBlock.swift in Sources */,
+				A8301A8A2910158500E11440 /* ClickupInteractor.swift in Sources */,
+				A8301A8E29108B6000E11440 /* ClickupDao.swift in Sources */,
+				A8301A88291014C100E11440 /* ClickupVIew.swift in Sources */,
 				A8375E23290C62D200D4E447 /* UserSettingDao.swift in Sources */,
 				A85C4E6928DA366D00FB673A /* Usertask.swift in Sources */,
+				A8301A902910C81800E11440 /* ClickupMyTaskView.swift in Sources */,
 				A8E40E8D290BBBDB00BA4ED8 /* ProfileView.swift in Sources */,
 				A8375E21290C621F00D4E447 /* UsertaskDao.swift in Sources */,
 				A86FEB3A28E5804800E42FEE /* UsertaskInteractor.swift in Sources */,
@@ -619,13 +647,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		A8C1E77F28E5ABEC001878EF /* Database.xcdatamodeld */ = {
+		A8C1E77F28E5ABEC001878EF /* database.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				A8C1E78028E5ABEC001878EF /* Database.xcdatamodel */,
+				A8C1E78028E5ABEC001878EF /* database.xcdatamodel */,
 			);
-			currentVersion = A8C1E78028E5ABEC001878EF /* Database.xcdatamodel */;
-			path = Database.xcdatamodeld;
+			currentVersion = A8C1E78028E5ABEC001878EF /* database.xcdatamodel */;
+			path = database.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -5,30 +5,18 @@ import Combine
 import UIComponent
 
 class AppState {
-    var userdata: UserData
-    var markdown: MarkDownState
-    var usersetting: UserSetting
-    
-    init() {
-        self.userdata = UserData()
-        self.markdown = MarkDownState()
-        self.usersetting = UserSetting()
-    }
+    var userdata = UserData()
+    var markdown = MarkDownState()
+    var usersetting = UserSetting()
+    var clickup = ClickupState()
 }
 
 extension AppState {
     class UserData {
-        var page: Int
-        var tasks: PassthroughSubject<[Usertask], Never>
-        var deleteTask: PassthroughSubject<Usertask, Never>
-        var currentTask: PassthroughSubject<Usertask?, Never>
-        
-        init() {
-            self.page = 0
-            self.tasks = PassthroughSubject()
-            self.deleteTask = PassthroughSubject()
-            self.currentTask = PassthroughSubject()
-        }
+        var page: Int = 0
+        var tasks: PassthroughSubject<[Usertask], Never> = .init()
+        var deleteTask: PassthroughSubject<Usertask, Never> = .init()
+        var currentTask: PassthroughSubject<Usertask?, Never> = .init()
     }
 }
 
@@ -40,10 +28,14 @@ extension AppState {
 
 extension AppState {
     struct UserSetting {
-        var appearance: PassthroughSubject<NSAppearance?, Never>
+        var appearance: PassthroughSubject<NSAppearance?, Never> = .init()
+    }
+}
+
+extension AppState {
+    struct ClickupState {
+        var tokenVerify: PassthroughSubject<Bool, Never> = .init()
+        var tasks: PassthroughSubject<[Clickup.Task], Never> = .init()
         
-        init() {
-            self.appearance = PassthroughSubject()
-        }
     }
 }

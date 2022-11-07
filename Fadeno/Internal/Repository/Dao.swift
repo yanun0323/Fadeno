@@ -7,15 +7,16 @@
 
 import Foundation
 import CoreData
+import UIComponent
 
-final class Dao: UsertaskDao, UserSettingDao {
+final class Dao: UsertaskDao, UserSettingDao, ClickupDao {
     internal var delegateUD: UsertaskDaoDelegate
     internal var ctx: NSManagedObjectContext
     internal var request: NSFetchRequest<UsertaskMO>
     
     init() {
         self.delegateUD = UsertaskDaoDelegate()
-        self.ctx = PersistenceController.shared.container.viewContext
+        self.ctx = PersistenceController.context
         self.request = .init(entityName: "UsertaskMO")
     }
 }

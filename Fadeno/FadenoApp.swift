@@ -11,20 +11,18 @@ import AppKit
 
 @main
 struct FadenoApp: App {
-    private var container: DIContainer
-    
-    init() {
-        container = DIContainer(isMock: false)
-    }
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .inject(container)
-                .TextediterCommand()
-                .frame(minWidth: 900, minHeight: 600)
+                .inject(delegate.container)
+                .TextEditerCommand()
+                .frame(minWidth: 1200, minHeight: 600)
+                .background(.background)
                 .onAppear {
-                    NSApp.appearance = container.interactor.usersetting.GetAppearance()
+                    NSApp.appearance = delegate.container.interactor.usersetting.GetAppearance()
                 }
         }
         .commands {
@@ -56,6 +54,47 @@ struct FadenoApp: App {
                     }
                 }
             }
+    }
+}
+
+class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
+    private var statusItem: NSStatusItem?
+    private var popOver = NSPopover()
+    var container = DIContainer()
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        
+        NSApp.appearance = container.interactor.usersetting.GetAppearance()
+        
+//        mainViewModel.PopOver = popOver
+        popOver.setValue(true, forKeyPath: "shouldHideAnchor")
+        popOver.contentSize = CGSize(width: 1200, height: 600)
+        popOver.behavior = .transient
+        popOver.animates = true
+        popOver.contentViewController = NSViewController()
+        popOver.contentViewController = NSHostingController(rootView: ContentView()
+            .inject(container)
+        )
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        
+        var img = NSImage(named: "multithread.fill")
+        var config = NSImage.SymbolConfiguration(textStyle: .body, scale: .large)
+        config = config.applying(.init(paletteColors: [
+            .init(red: 0, green: 0.5, blue: 1, alpha: 1),
+            .init(red: 0.9, green: 0.2, blue: 0.2, alpha: 1)]))
+        img = img?.withSymbolConfiguration(config)
+        
+        if let statusButton = statusItem?.button {
+            statusButton.image = img
+            statusButton.action = #selector(togglePopover)
+        }
+    }
+    
+    @objc func togglePopover() {
+        if let button = statusItem?.button {
+            self.popOver.show(relativeTo:  button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+        }
+        
     }
 }
 

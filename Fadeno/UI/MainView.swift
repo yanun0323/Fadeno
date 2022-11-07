@@ -4,8 +4,9 @@ import UIComponent
 struct MainView: View {
     @EnvironmentObject private var container: DIContainer
     @State private var router: Int = 0
-    @State private var popupProfile: Bool = false
     @State private var deleting: Bool = false
+    @State private var popupProfile: Bool = false
+    @State private var clickUpValid: Bool = false
     @State private var taskToDelete: Usertask? = nil
     private let sidebarWidth: CGFloat = 40
     private let sidebarPadding: CGFloat = 5
@@ -23,6 +24,8 @@ struct MainView: View {
                         SingleTaskListView(type: .archived)
                     case 3:
                         SingleTaskListView(type: .complete)
+                    case 4:
+                        ClickupVIew()
                     case 98:
                         ProfileView()
                     case 99:
@@ -46,9 +49,18 @@ struct MainView: View {
             taskToDelete = value
             deleting = true
         }
+        .onReceive(container.appstate.clickup.tokenVerify, perform: { value in
+            if clickUpValid { return }
+            clickUpValid = value
+        })
         .onChange(of: deleting) { value in
             if value == false {
                 taskToDelete = nil
+            }
+        }
+        .onAppear {
+            if !container.interactor.clickup.GetToken().isEmpty {
+                clickUpValid = true
             }
         }
     }
@@ -61,6 +73,8 @@ extension MainView {
             SidebarButton(image: "house", selected: "house.fill", page: 0)
             SidebarButton(image: "archivebox", selected: "archivebox.fill", page: 2)
             SidebarButton(image: "checkmark", page: 3)
+            SidebarButton(image: "hand.thumbsdown", selected: "hand.thumbsdown.fill", page: 4)
+                .disabled(!clickUpValid)
             
             Spacer()
             

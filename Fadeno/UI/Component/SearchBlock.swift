@@ -33,9 +33,9 @@ struct SearchBlock: View {
             .onAppear {
                 if timer != nil { return }
                 timer = .init(countdown: 3, timeInterval: 0.1, action: {
-                    container.interactor.usertask.Publish()
+                    container.interactor.usertask.PublishAll()
                 })
-                timer?.Init()
+                timer?.Activate()
             }
     }
 }
