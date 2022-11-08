@@ -11,13 +11,16 @@ import AppKit
 
 struct SettingView: View {
     @EnvironmentObject private var container: DIContainer
-    @State private var appearance: NSAppearance? = nil
     @State private var clickUpToken = ""
     @State private var clickUpTokenConfirm = false
     @State private var clickUpTokenOK = false
     @State private var clickUpTokenVerifying = false
     @State private var timer: CacheTimer? = nil
     @State private var initial = true
+    @State private var taskbarVertical = false
+    
+    /* cache */
+    @State private var appearance: NSAppearance? = nil
     
     private var token: String {
         clickUpToken
@@ -28,12 +31,15 @@ struct SettingView: View {
         VStack(spacing: 20) {
             ThemeBlock
                 .padding(.top, 20)
-            ClickupTokenBlock
+//            ClickupTokenBlock
+            TaskbarVerticalBlock
             Block()
         }
         .onAppear {
             if !initial { return }
             appearance = container.interactor.usersetting.GetAppearance()
+            taskbarVertical = container.interactor.usersetting.GetTaskbarVertical()
+            
             clickUpToken = container.interactor.clickup.GetToken()
             clickUpTokenConfirm = !clickUpToken.isEmpty
             clickUpTokenOK = !clickUpToken.isEmpty
@@ -54,6 +60,18 @@ struct SettingView: View {
 
 // MARK: ViewBlock
 extension SettingView {
+    var TaskbarVerticalBlock: some View {
+        Toggle(isOn: Binding(
+            get: {
+                taskbarVertical
+            }, set: { value in
+                container.interactor.usersetting.SetTaskbarVertical(value)
+                taskbarVertical = value
+            })) {
+                Text("setting.taskbar.vertical")
+            }
+    }
+    
     var ClickupTokenBlock: some View {
         Section(title: "clickup.token") {
             VStack {
@@ -98,7 +116,7 @@ extension SettingView {
                         }))
                         .textFieldStyle(.plain)
                         .padding(5)
-                        .background(.background)
+                        .background()
                         .cornerRadius(5)
                         .disabled(clickUpTokenConfirm)
                     ButtonCustom(width: 70, height: 25) {
@@ -106,7 +124,7 @@ extension SettingView {
                     } content: {
                         Text(clickUpTokenConfirm ? "clickup.token.input.cancel" : "clickup.token.input.lock")
                     }
-                    .background(.background)
+                    .background()
                     .cornerRadius(5)
                     .shadow(radius: 1)
                     .disabled(!clickUpTokenConfirm && !clickUpTokenOK)

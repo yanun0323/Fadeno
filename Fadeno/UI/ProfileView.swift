@@ -11,9 +11,6 @@ import UIComponent
 struct ProfileView: View {
     @State private var text = ""
     var body: some View {
-        TextEditorView(text: $text)
-        
-        TextField("ttt", text: $text)
         Block()
     }
 }

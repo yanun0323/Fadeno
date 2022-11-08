@@ -32,9 +32,20 @@ extension UserSettingDao where Self: UserSettingRepository {
             return nil
         }
     }
+    
+    func SetTaskbarVertical(_ value: Bool) {
+        UserDefaults.taskbarVertical = value
+    }
+    
+    func GetTaskbarVertical() -> Bool? {
+        UserDefaults.taskbarVertical
+    }
 }
 
 extension UserDefaults {
     @UserDefault(key: "Appearance")
     static var appearance: Int?
+    
+    @UserDefault(key: "TaskbarVertical")
+    static var taskbarVertical: Bool?
 }

@@ -30,7 +30,7 @@ struct MultipleTaskListView: View {
                 }
             }
             .padding(.horizontal, 10)
-            .background(.background)
+            .background()
             .frame(width: 400)
             Separator(direction: .vertical, color: .section, size: 1)
             MarkdownContent(mdView: Markdown(currentTask?.content ?? "").id(currentTask?.hashID ?? ""))

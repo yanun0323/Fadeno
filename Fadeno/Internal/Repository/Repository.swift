@@ -24,6 +24,8 @@ protocol UsertaskRepository {
 protocol UserSettingRepository {
     func SetAppereance(_:Int)
     func GetAppereance() -> NSAppearance?
+    func SetTaskbarVertical(_:Bool)
+    func GetTaskbarVertical() -> Bool?
 }
 
 protocol ClickupRepository {
@@ -33,4 +35,5 @@ protocol ClickupRepository {
     func GetClickupTeam() -> Clickup.Team?
     func GetClickupUser() -> Clickup.User?
     func ListClickupTasks() -> [Clickup.Task]
+    func GetTask(_:String) -> Clickup.Task?
 }

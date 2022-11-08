@@ -16,7 +16,7 @@ extension ClickupDao where Self: ClickupRepository {
     }
     
     func GetClickupAPIToken() -> String {
-        UserDefaults.clickUpAPIToken ?? ""
+        return UserDefaults.clickUpAPIToken ?? ""
     }
     
     func VerifyClickupAPIToken(_ token: String) -> Bool {
@@ -64,17 +64,30 @@ extension ClickupDao where Self: ClickupRepository {
         guard let teamID = GetClickupTeam()?.id else { return [] }
         guard let userID = GetClickupUser()?.id else { return [] }
         let url = "https://api.clickup.com/api/v2/team/\(teamID)/task?assignees=\(userID)&assignees=\(userID)"
-        print(url)
-        guard let tasks = Http.SendRequest(toUrl: url, type: Clickup.Tasks.self, action: { requset in
-            var req = requset
+        guard let tasks = Http.SendRequest(toUrl: url, type: Clickup.Tasks.self, action: { request in
+            var req = request
             req.setValue(GetClickupAPIToken(), forHTTPHeaderField: "Authorization")
             return req
         }) else {
-            print("get task request failed")
+            print("get tasks request failed")
             return []
         }
         
         return tasks.tasks
+    }
+    
+    func GetTask(_ taskID: String) -> Clickup.Task? {
+        let url = "https://api.clickup.com/api/v2/task/\(taskID)"
+        guard let task = Http.SendRequest(toUrl: url, type: Clickup.Task.self, action: { request in
+            var req = request
+            req.setValue(GetClickupAPIToken(), forHTTPHeaderField: "Authorization")
+            req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            return req
+        }) else {
+            print("get task request failed")
+            return nil
+        }
+        return task
     }
 }
 

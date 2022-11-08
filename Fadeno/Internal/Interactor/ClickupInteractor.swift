@@ -49,9 +49,15 @@ extension ClickupInteractor {
         return user?.id.description ?? ""
     }
     
-    func ListTaks(){
+    func ListTaks() {
         DispatchQueue.global().async {
             appstate.clickup.tasks.send(repo.ListClickupTasks())
+        }
+    }
+    
+    func GetTask(_ taskID: String) {
+        DispatchQueue.global().async {
+            appstate.clickup.currentTask.send(repo.GetTask(taskID))
         }
     }
 }

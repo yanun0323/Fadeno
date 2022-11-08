@@ -20,7 +20,7 @@ struct FadenoApp: App {
                 .inject(delegate.container)
                 .TextEditerCommand()
                 .frame(minWidth: 1200, minHeight: 600)
-                .background(.background)
+                .background()
                 .onAppear {
                     NSApp.appearance = delegate.container.interactor.usersetting.GetAppearance()
                 }

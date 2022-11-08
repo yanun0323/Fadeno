@@ -17,6 +17,7 @@
 "setting.system" = "System";
 "setting.light" = "Light";
 "setting.dark" = "Dark";
+"setting.taskbar.vertical" = "Use Left Taskbar Title";
 
 "markdown.mode.edit" = "Markdown Edit Mode";
 "markdown.mode.view" = "Markdown View Mode";
@@ -28,3 +29,4 @@
 "clickup.token.input" = "Please input your clickup token";
 "clickup.token.input.lock" = "Lock";
 "clickup.token.input.cancel" = "Cancel";
+"clickup.task.error" = "Something wrong. Please try again later.";

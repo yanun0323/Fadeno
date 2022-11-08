@@ -13,11 +13,11 @@
 		A805FFB82909BFDE00918B49 /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFB72909BFDE00918B49 /* Dao.swift */; };
 		A805FFBA2909C0C300918B49 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFB92909C0C300918B49 /* PersistenceController.swift */; };
 		A805FFBC2909C31000918B49 /* UsertaskMO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A805FFBB2909C31000918B49 /* UsertaskMO.swift */; };
-		A8301A88291014C100E11440 /* ClickupVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A87291014C100E11440 /* ClickupVIew.swift */; };
+		A8301A88291014C100E11440 /* ClickupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A87291014C100E11440 /* ClickupView.swift */; };
 		A8301A8A2910158500E11440 /* ClickupInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A892910158500E11440 /* ClickupInteractor.swift */; };
 		A8301A8C29105C8400E11440 /* LoadingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A8B29105C8400E11440 /* LoadingCircle.swift */; };
 		A8301A8E29108B6000E11440 /* ClickupDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A8D29108B6000E11440 /* ClickupDao.swift */; };
-		A8301A902910C81800E11440 /* ClickupMyTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A8F2910C81800E11440 /* ClickupMyTaskView.swift */; };
+		A8301A902910C81800E11440 /* ClickupTasklistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A8F2910C81800E11440 /* ClickupTasklistView.swift */; };
 		A8301A922911A80100E11440 /* Clickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8301A912911A80100E11440 /* Clickup.swift */; };
 		A8357F3828FC677800B0CDC8 /* MultipleTaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */; };
 		A8375E1C290BEC3100D4E447 /* UserSettingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */; };
@@ -38,6 +38,8 @@
 		A86FEB3428E459B800E42FEE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3328E459B800E42FEE /* MainView.swift */; };
 		A86FEB3628E57F7800E42FEE /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3528E57F7800E42FEE /* AppState.swift */; };
 		A86FEB3A28E5804800E42FEE /* UsertaskInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86FEB3928E5804800E42FEE /* UsertaskInteractor.swift */; };
+		A8A75AD9291A488200EF9D8A /* ClickupTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A75AD8291A488200EF9D8A /* ClickupTaskView.swift */; };
+		A8A75ADB291A65EA00EF9D8A /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A75ADA291A65EA00EF9D8A /* Tool.swift */; };
 		A8C1E78128E5ABEC001878EF /* database.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8C1E77F28E5ABEC001878EF /* database.xcdatamodeld */; };
 		A8D6655E28F66AF500220661 /* TaskBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D6655D28F66AF500220661 /* TaskBlock.swift */; };
 		A8D6656628F66E5400220661 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8D6656828F66E5400220661 /* Localizable.strings */; };
@@ -58,11 +60,11 @@
 		A805FFB72909BFDE00918B49 /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
 		A805FFB92909C0C300918B49 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		A805FFBB2909C31000918B49 /* UsertaskMO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskMO.swift; sourceTree = "<group>"; };
-		A8301A87291014C100E11440 /* ClickupVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupVIew.swift; sourceTree = "<group>"; };
+		A8301A87291014C100E11440 /* ClickupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupView.swift; sourceTree = "<group>"; };
 		A8301A892910158500E11440 /* ClickupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupInteractor.swift; sourceTree = "<group>"; };
 		A8301A8B29105C8400E11440 /* LoadingCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingCircle.swift; sourceTree = "<group>"; };
 		A8301A8D29108B6000E11440 /* ClickupDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupDao.swift; sourceTree = "<group>"; };
-		A8301A8F2910C81800E11440 /* ClickupMyTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupMyTaskView.swift; sourceTree = "<group>"; };
+		A8301A8F2910C81800E11440 /* ClickupTasklistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupTasklistView.swift; sourceTree = "<group>"; };
 		A8301A912911A80100E11440 /* Clickup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clickup.swift; sourceTree = "<group>"; };
 		A8357F3728FC677800B0CDC8 /* MultipleTaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleTaskListView.swift; sourceTree = "<group>"; };
 		A8375E1B290BEC3100D4E447 /* UserSettingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingInteractor.swift; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		A86FEB3328E459B800E42FEE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A86FEB3528E57F7800E42FEE /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		A86FEB3928E5804800E42FEE /* UsertaskInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsertaskInteractor.swift; sourceTree = "<group>"; };
+		A8A75AD8291A488200EF9D8A /* ClickupTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickupTaskView.swift; sourceTree = "<group>"; };
+		A8A75ADA291A65EA00EF9D8A /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		A8C1E78028E5ABEC001878EF /* database.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = database.xcdatamodel; sourceTree = "<group>"; };
 		A8D6655D28F66AF500220661 /* TaskBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskBlock.swift; sourceTree = "<group>"; };
 		A8D6656728F66E5400220661 /* en */ = {isa = PBXFileReference; explicitFileType = text.yaml; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -174,8 +178,8 @@
 				A8E40E87290A661300BA4ED8 /* SingleTaskListView.swift */,
 				A8E40E8C290BBBDB00BA4ED8 /* ProfileView.swift */,
 				A8E40E89290BB00800BA4ED8 /* SettingView.swift */,
-				A8301A87291014C100E11440 /* ClickupVIew.swift */,
-				A8301A8F2910C81800E11440 /* ClickupMyTaskView.swift */,
+				A8301A87291014C100E11440 /* ClickupView.swift */,
+				A8301A8F2910C81800E11440 /* ClickupTasklistView.swift */,
 				A864DB4428EC399100B9DC46 /* Component */,
 			);
 			path = UI;
@@ -240,6 +244,7 @@
 				A85C4E8028DAC9F200FB673A /* Extension.swift */,
 				A8D6656A28F68B2800220661 /* SwiftUIListRecoder.swift */,
 				F6E0F945290D3490008F4A7C /* Command.swift */,
+				A8A75ADA291A65EA00EF9D8A /* Tool.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				A85C4E6A28DAB34000FB673A /* MarkdownContent.swift */,
 				A8301A8B29105C8400E11440 /* LoadingCircle.swift */,
 				A85B03AF2913D23E005B0D5E /* ClickupTaskRow.swift */,
+				A8A75AD8291A488200EF9D8A /* ClickupTaskView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8E40E8F290BBDD800BA4ED8 /* HomeView.swift in Sources */,
+				A8A75AD9291A488200EF9D8A /* ClickupTaskView.swift in Sources */,
 				A86FEB3428E459B800E42FEE /* MainView.swift in Sources */,
 				A85C4E4628D9A78900FB673A /* ContentView.swift in Sources */,
 				A805FFB22908FAB800918B49 /* DaoMock.swift in Sources */,
@@ -364,16 +371,17 @@
 				F6CA5C87290D119F00C33783 /* DeleteBlock.swift in Sources */,
 				A8301A8A2910158500E11440 /* ClickupInteractor.swift in Sources */,
 				A8301A8E29108B6000E11440 /* ClickupDao.swift in Sources */,
-				A8301A88291014C100E11440 /* ClickupVIew.swift in Sources */,
+				A8301A88291014C100E11440 /* ClickupView.swift in Sources */,
 				A8375E23290C62D200D4E447 /* UserSettingDao.swift in Sources */,
 				A85C4E6928DA366D00FB673A /* Usertask.swift in Sources */,
-				A8301A902910C81800E11440 /* ClickupMyTaskView.swift in Sources */,
+				A8301A902910C81800E11440 /* ClickupTasklistView.swift in Sources */,
 				A8E40E8D290BBBDB00BA4ED8 /* ProfileView.swift in Sources */,
 				A8375E21290C621F00D4E447 /* UsertaskDao.swift in Sources */,
 				A86FEB3A28E5804800E42FEE /* UsertaskInteractor.swift in Sources */,
 				A85C4E8128DAC9F200FB673A /* Extension.swift in Sources */,
 				A8E40E88290A661300BA4ED8 /* SingleTaskListView.swift in Sources */,
 				A805FFBA2909C0C300918B49 /* PersistenceController.swift in Sources */,
+				A8A75ADB291A65EA00EF9D8A /* Tool.swift in Sources */,
 				A8357F3828FC677800B0CDC8 /* MultipleTaskListView.swift in Sources */,
 				A8D6656B28F68B2800220661 /* SwiftUIListRecoder.swift in Sources */,
 				A8375E1C290BEC3100D4E447 /* UserSettingInteractor.swift in Sources */,
@@ -531,7 +539,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fadeno/Resource/Fadeno.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1F03Y;
+				CURRENT_PROJECT_VERSION = 1F8NC;
 				DEVELOPMENT_ASSET_PATHS = "Fadeno/Resource Fadeno/Resource/Assets.xcassets Fadeno/Resource/en.lproj/Localizable.strings";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -555,7 +563,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanunyang.Fadeno;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -572,7 +580,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fadeno/Resource/Fadeno.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1F03Y;
+				CURRENT_PROJECT_VERSION = 1F8NC;
 				DEVELOPMENT_ASSET_PATHS = "Fadeno/Resource Fadeno/Resource/Assets.xcassets Fadeno/Resource/en.lproj/Localizable.strings";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -596,7 +604,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 0.0.3;
+				MARKETING_VERSION = 0.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanunyang.Fadeno;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

@@ -25,7 +25,7 @@ struct SingleTaskListView: View {
                 TaskBlock(type: type, searchText: $searchText, less: { $0.order < $1.order }, isSingle: true)
             }
             .padding(.horizontal, 10)
-            .background(.background)
+            .background()
             .frame(width: 400)
             Separator(direction: .vertical, color: .section, size: 1)
             MarkdownContent(mdView: Markdown(currentTask?.content ?? "").id(currentTask?.hashID ?? ""))

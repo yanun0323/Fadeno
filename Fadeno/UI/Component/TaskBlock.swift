@@ -15,6 +15,7 @@ struct TaskBlock: View {
     @State var currentID: UUID = UUID()
     
     @State private var hovered: Bool = false
+    @State private var isBarVertival: Bool = true
     
     let type: Usertask.Tasktype
     @Binding var searchText: String
@@ -25,17 +26,17 @@ struct TaskBlock: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if !isSingle {
-//                TopbarBlock
+            if !isSingle && !isBarVertival {
+                TopbarBlock
             }
             HStack(spacing: 0) {
-                if !isSingle {
+                if !isSingle && isBarVertival {
                     LeftbarBlock
                 }
                 TaskListBlock
             }
         }
-        .background(.background)
+        .background()
         .onReceive(container.appstate.userdata.tasks) { value in
             if tasks.count == value.count { return }
             print("Task Block \(type.title) recive tasks publish")
@@ -48,6 +49,7 @@ struct TaskBlock: View {
             searching = !value.isEmpty
         })
         .onAppear {
+            isBarVertival = container.interactor.usersetting.GetTaskbarVertical()
             container.interactor.usertask.PublishAll()
         }
     }
@@ -86,7 +88,7 @@ extension TaskBlock {
             Spacer()
             CountAndCreaterBlock
         }
-        .background(.background)
+        .background()
         .zIndex(2)
         .padding(.bottom, 5)
     }
@@ -122,7 +124,7 @@ extension TaskBlock {
             Spacer()
             CountAndCreaterBlock
         }
-        .background(.background)
+        .background()
         .zIndex(2)
     }
     
@@ -204,7 +206,7 @@ extension TaskBlock {
                             .fontWeight(.light)
                         Spacer()
                     }
-                    .background(.background)
+                    .background()
                 }
                 .contextMenu {
                     if task.isArchived || task.isComplete {

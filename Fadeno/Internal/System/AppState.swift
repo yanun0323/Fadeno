@@ -36,6 +36,6 @@ extension AppState {
     struct ClickupState {
         var tokenVerify: PassthroughSubject<Bool, Never> = .init()
         var tasks: PassthroughSubject<[Clickup.Task], Never> = .init()
-        
+        var currentTask: PassthroughSubject<Clickup.Task?, Never> = .init()
     }
 }

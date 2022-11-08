@@ -13,12 +13,12 @@ struct ClickupTaskRow: View {
     @State var task: Clickup.Task
     var body: some View {
         HStack {
-            Text(task.status?.status.uppercased() ?? "")
+            Text(task.status.status.uppercased())
                 .fontWeight(.light)
                 .foregroundColor(.white)
                 .padding(.horizontal)
                 .frame(width: 150, height: 25)
-                .background(Color.init(hex: task.status?.color))
+                .background(Color.init(hex: task.status.color))
                 .cornerRadius(5)
             Text(task.name ?? "")
                 .font(.title3)
@@ -37,7 +37,7 @@ struct ClickupTaskRow: View {
                 .frame(width: 120)
         }
         .padding(5)
-        .background(.background)
+        .background()
         .colorMultiply(isHover ? .init(hex: "#ddd") : .white)
         .onHover { value in
             isHover = value
@@ -85,9 +85,9 @@ extension ClickupTaskRow {
                             .frame(width: 25, height: 25)
                     }
                     .frame(width: 28, height: 28)
-                    .background(.background)
+                    .background()
                     .clipShape(Circle())
-                    .zIndex(IntToDouble(10-i))
+                    .zIndex(Tool.IntToDouble(10-i))
                 }
             }
         }
@@ -95,13 +95,9 @@ extension ClickupTaskRow {
 }
 
 // MARK: - Function
-extension ClickupTaskRow {
-    func IntToDouble(_ i: Int) -> Double {
-        Double(i)
-    }
-}
+extension ClickupTaskRow {}
 
-struct ClickupTaskView_Previews: PreviewProvider {
+struct ClickupTaskRow_Previews: PreviewProvider {
     static var previews: some View {
         ClickupTaskRow(task: .preview!)
             .frame(width: 1200)

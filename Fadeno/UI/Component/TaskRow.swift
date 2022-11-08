@@ -8,32 +8,20 @@ struct TaskRow: View {
     @Binding private var usertask: Usertask
     @Binding private var currentID: UUID
     @Binding private var searched: Bool
-    @State private var isPopover: Bool
     
     @State private var title: String
     @State private var outline: String
-    @State private var content: String
     
     @State private var detail = false
     @State private var linked = false
     @State private var linkHover = false
     
-    /* timer */
-    @State private var timer: CacheTimer?
-    
-    var cacheTask: Usertask {
-        return usertask
-    }
-    
-    init(usertask: Binding<Usertask>, currentID: Binding<UUID>, searched: Binding<Bool>, isPopover: Bool = false) {
+    init(usertask: Binding<Usertask>, currentID: Binding<UUID>, searched: Binding<Bool>) {
         self._usertask = usertask
         self._currentID = currentID
         self._searched = searched
-        self._isPopover = State(initialValue: isPopover)
         self._title = State(initialValue: usertask.wrappedValue.title)
         self._outline = State(initialValue: usertask.wrappedValue.outline)
-        self._content = State(initialValue: usertask.wrappedValue.content)
-        self.timer = nil
     }
     
     var body: some View {
@@ -59,41 +47,38 @@ struct TaskRow: View {
                         .padding(.vertical, 1)
                 }
                 VStack(alignment: .leading, spacing: 0) {
-                    TitleRowBlock
-                    NoteRowBlock
+                    TitleBlock
+                    OutlineBlock
                 }
                 
-                if isPopover {
-                    PopoverTrigerBlock
-                } else {
-                    ContentPageBlock
-                }
+                ContentPageBlock
             }
             .padding(5)
             .background(BackgroundStyle.background)
-            .colorMultiply((currentID == usertask.id && !isPopover) ? .cyan.opacity(0.8) : .white)
-            .cornerRadius(isPopover ? 0 : 5)
+            .colorMultiply(currentID == usertask.id ? .cyan.opacity(0.8) : .white)
+            .cornerRadius(5)
         }
-        .frame(height: isPopover ? 30 : 45)
+        .frame(height: 45)
         .lineLimit(1)
         .truncationMode(.tail)
-        .background(.background)
+        .background()
         .onAppear {
             linked = IsLink(outline)
-            if timer != nil {
-                return
-            }
-            timer = CacheTimer(countdown: 3, timeInterval: 0.1, action: {
-                container.interactor.usertask.UpdateUsertask(cacheTask)
-            })
-            timer?.Activate()
         }
         .onReceive(container.appstate.userdata.tasks) { _ in
             print("Task Row \(usertask.type.title) \(usertask.order) recive tasks publish")
             guard let task = container.interactor.usertask.GetUsertask(usertask.id) else { return }
             usertask = task
             UpdateSelf()
-            timer?.SkipAction()
+        }
+        .onChange(of: title) { value in
+            usertask.title = value
+            container.interactor.usertask.UpdateUsertask(usertask)
+        }
+        .onChange(of: outline) { value in
+            usertask.outline = value
+            linked = IsLink(value)
+            container.interactor.usertask.UpdateUsertask(usertask)
         }
     }
 }
@@ -101,18 +86,11 @@ struct TaskRow: View {
 // MARK: View Block
 
 extension TaskRow {
-    var TitleRowBlock: some View {
+    var TitleBlock: some View {
         HStack(spacing: 0) {
-            Block(width: 5)
+            Block(width: 5, height: 5)
             
-            TextField("Title...", text: Binding(
-                get: {
-                    title
-                }, set: { value in
-                    title = value
-                    usertask.title = title
-                    timer?.Refresh()
-                }))
+            TextField("Title...", text: $title)
                 .font(.system(size: 14, weight: (title.isEmpty ? .ultraLight : .light), design: .default))
                 .lineLimit(1)
                 .textFieldStyle(.plain)
@@ -121,9 +99,9 @@ extension TaskRow {
         }
     }
     
-    var NoteRowBlock: some View {
+    var OutlineBlock: some View {
         HStack(spacing: 0) {
-            Block(width: 5)
+            Block(width: 5, height: 5)
             
             if linked {
                 ButtonCustom(width: 33, height: 13, color: usertask.type.color.opacity(linkHover ? 0.5 : 1), radius: 2) {
@@ -151,69 +129,12 @@ extension TaskRow {
                 }
             }
 
-            TextField("Link or Description...", text: Binding(
-                get: {
-                    outline
-                }, set: { value in
-                    outline = value
-                    usertask.outline = outline
-                    linked = IsLink(value)
-                    timer?.Refresh()
-                }))
+            TextField("Link or Description...", text: $outline)
                 .foregroundColor(.primary75)
                 .font(.system(size: 12, weight: (outline.isEmpty ? .ultraLight : .light), design: .default))
                 .frame(height: 12)
                 .lineLimit(1)
                 .textFieldStyle(.plain)
-        }
-    }
-    
-    var PopoverTrigerBlock: some View {
-        ButtonCustom(width: 25, height: 25, radius: 5) {
-//            if container.appstate.usersetting.popoverClick {
-//                detail = true
-//            }
-        } content: {
-            Image(systemName: content.isEmpty ?  "bubble.middle.bottom" : "bubble.middle.bottom.fill")
-                .foregroundColor(.primary25)
-        }
-        .onHover(perform: { value in
-            if container.appstate.userdata.page == -1 {
-                detail = false
-                return
-            }
-            
-//            if container.appstate.usersetting.popoverClick {
-//                detail = detail
-//                return
-//            }
-            
-//            if container.appstate.usersetting.popoverAutoClose {
-//                detail = value
-//                return
-//            }
-            detail = true
-            
-        })
-        .popover(isPresented: $detail, arrowEdge: .trailing) {
-            ZStack {
-                TextEditor(text: Binding(
-                    get: {
-                        content
-                    }, set: { value in
-                        content = value
-                        if usertask.content != value {
-                            usertask.content = value
-                        }
-                    }))
-                    .font(.system(size: 14, weight: .thin, design: .default))
-                    .background(.clear)
-//                    .frame(width: CGFloat(container.appstate.usersetting.popoverWidth),
-//                           height: CGFloat((content.filter { $0 == "\n" }.count+1) * (14+3)),
-//                           alignment: .leading)
-            }
-            .padding(.vertical, 10)
-            .padding(.horizontal)
         }
     }
     
@@ -246,7 +167,6 @@ extension TaskRow {
     func UpdateSelf() {
         title = usertask.title
         outline = usertask.outline
-        content = usertask.content
     }
 }
 
@@ -262,7 +182,7 @@ struct TaskRow_Previews: PreviewProvider {
         .frame(width: 300)
         .padding()
         .preferredColorScheme(.light)
-        .background(.background)
+        .background()
         
         VStack(spacing: 0) {
             Row(Usertask.preview.urgent1)
@@ -274,7 +194,7 @@ struct TaskRow_Previews: PreviewProvider {
         .frame(width: 300)
         .padding()
         .preferredColorScheme(.dark)
-        .background(.background)
+        .background()
     }
     
     @MainActor

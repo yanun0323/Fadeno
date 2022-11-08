@@ -17,6 +17,7 @@
 "setting.system" = "系統";
 "setting.light" = "淺色";
 "setting.dark" = "深色";
+"setting.taskbar.vertical" = "使用側邊任務分類";
 
 "markdown.mode.edit" = "Markdown 編輯模式";
 "markdown.mode.view" = "Markdown 檢視模式";
@@ -28,4 +29,5 @@
 "clickup.token.input" = "請輸入你的 clickup token";
 "clickup.token.input.lock" = "鎖定";
 "clickup.token.input.cancel" = "取消";
+"clickup.task.error" = "發生錯誤，請再試一次";
 

@@ -47,6 +47,10 @@ extension UsertaskDao where Self: UsertaskRepository {
             delegateUD.currentTask = nil
             return
         }
+        if delegateUD.currentTask?.id == usertask?.id {
+            print("same current task")
+            return
+        }
         do {
             self.delegateUD.currentTask = try self.ctx.fetch(self.request).first(where: { $0.id! == task.id })?.New() ?? nil
         } catch {

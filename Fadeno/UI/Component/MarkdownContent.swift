@@ -1,17 +1,13 @@
 import SwiftUI
 import UIComponent
 
-struct MarkdownContent<V>: View where V: View {
+struct MarkdownContent<V: View>: View {
     @EnvironmentObject private var container: DIContainer
-    @FocusState var focus: Bool
-    @State var edit: Bool = false
+    @FocusState private var focus: Bool
+    @State private var edit: Bool = false
+    @State private var currentTask: Usertask? = nil
+    @State private var input = ""
     @State var mdView: V
-    @State var currentTask: Usertask? = nil
-    @State var timer: CacheTimer? = nil
-    
-    var cacheTask: Usertask? {
-        return currentTask
-    }
     
     var body: some View {
         VStack {
@@ -28,9 +24,15 @@ struct MarkdownContent<V>: View where V: View {
         .hotkey(key: .kVK_Return, keyBase: []) {
             EditMode()
         }
-        .onChange(of: focus) { newValue in
-            if !newValue {
+        .onChange(of: focus) { value in
+            if !value {
                 edit = false
+            }
+        }
+        .onChange(of: input) { value in
+            currentTask?.content = value
+            if let current = currentTask {
+                container.interactor.usertask.UpdateUsertask(current)
             }
         }
         .onReceive(container.appstate.markdown.focus) { value in
@@ -38,17 +40,8 @@ struct MarkdownContent<V>: View where V: View {
         }
         .onReceive(container.appstate.userdata.currentTask) { value in
             currentTask = value
-            timer?.SkipAction()
+            input = currentTask?.content ?? ""
             mdView = Markdown(currentTask?.content ?? "", .dark).id(currentTask?.hashID ?? "") as! V
-        }
-        .onAppear {
-            if timer != nil { return }
-            timer = CacheTimer(countdown: 3, timeInterval: 0.1, action: {
-                if cacheTask != nil {
-                    container.interactor.usertask.UpdateUsertask(cacheTask!)
-                }
-            })
-            timer?.Activate()
         }
     }
 }
@@ -79,7 +72,7 @@ extension MarkdownContent {
         }
         .padding()
         .frame(height: 40)
-        .background(.background)
+        .background()
         .cornerRadius(7)
         .shadow(color: .black.opacity(0.5), radius: 2, y: 1)
     }
@@ -87,12 +80,7 @@ extension MarkdownContent {
     var mdBlock: some View {
         ZStack {
             if currentTask != nil {
-                TextEditorView(text: Binding(get: {
-                    currentTask!.content
-                }, set: { value in
-                    currentTask!.content = value
-                    timer?.Refresh()
-                }))
+                TextEditor(text: $input)
                     .font(.title3)
                     .focused($focus)
                     .opacity(edit ? 1 : 0)

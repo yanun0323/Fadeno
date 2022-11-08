@@ -25,7 +25,7 @@ struct MainView: View {
                     case 3:
                         SingleTaskListView(type: .complete)
                     case 4:
-                        ClickupVIew()
+                        ClickupView()
                     case 98:
                         ProfileView()
                     case 99:
@@ -73,8 +73,8 @@ extension MainView {
             SidebarButton(image: "house", selected: "house.fill", page: 0)
             SidebarButton(image: "archivebox", selected: "archivebox.fill", page: 2)
             SidebarButton(image: "checkmark", page: 3)
-            SidebarButton(image: "hand.thumbsdown", selected: "hand.thumbsdown.fill", page: 4)
-                .disabled(!clickUpValid)
+//            SidebarButton(image: "hand.thumbsdown", selected: "hand.thumbsdown.fill", page: 4)
+//                .disabled(!clickUpValid)
             
             Spacer()
             

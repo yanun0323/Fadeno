@@ -34,4 +34,12 @@ extension UserSettingInteractor {
     func GetAppearance() -> NSAppearance? {
         repo.GetAppereance()
     }
+    
+    func SetTaskbarVertical(_ value: Bool) {
+        repo.SetTaskbarVertical(value)
+    }
+    
+    func GetTaskbarVertical() -> Bool {
+        repo.GetTaskbarVertical() ?? false
+    }
 }

@@ -34,7 +34,7 @@ extension UsertaskInteractor {
     func UpdateUsertask(_ task: Usertask) {
         task.RefreshUpdateDate()
         repo.UpdateUsertask(task)
-        PublishCurrentTask()
+        PublishAll()
     }
     
     func SendDeleteUsertask(_ task: Usertask) {

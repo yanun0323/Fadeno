@@ -65,15 +65,15 @@ extension Clickup {
     struct Task: Codable {
         let id: String
         let customID: String?
-        let name: String?
-        let textContent, taskDescription: String?
-        let status: Status?
+        var name: String?
+        var textContent, taskDescription: String?
+        let status: Status
         let orderindex, dateCreated, dateUpdated: String?
         let dateClosed: JSONNull?
         let archived: Bool?
         let creator: Creator?
         let assignees: [Creator]
-        let watchers: [JSONAny]
+        let watchers: [User]
         let checklists: [Checklist]
         let tags: [Tag]
         let parent: JSONNull?
@@ -648,4 +648,17 @@ extension Clickup {
         }
     }
 
+}
+
+extension Clickup {
+    static func NewEmptyTask(_ id: String) -> Clickup.Task {
+        Clickup.Task(id: id, customID: nil, name: nil, textContent: nil, taskDescription: nil, status: Status(status: "Error", color: "#fff", type: .custom, orderindex: 0), orderindex: nil, dateCreated: nil, dateUpdated: nil, dateClosed: nil, archived: nil, creator: nil, assignees: [], watchers: [], checklists: [], tags: [], parent: nil, priority: nil, dueDate: nil, startDate: nil, points: nil, timeEstimate: nil, customFields: [], dependencies: [], linkedTasks: [], teamID: nil, url: nil, permissionLevel: nil, list: nil, project: nil, folder: nil, space: nil)
+    }
+    
+    static func NewErrorTask(_ id: String, _ err: Error) -> Clickup.Task {
+        var empty = NewEmptyTask("error - \(id)")
+        empty.name = err.localizedDescription
+        empty.textContent = err.localizedDescription
+        return empty
+    }
 }
