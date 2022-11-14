@@ -33,7 +33,7 @@ struct MultipleTaskListView: View {
             .background()
             .frame(width: 400)
             Separator(direction: .vertical, color: .section, size: 1)
-            MarkdownContent(mdView: Markdown(currentTask?.content ?? "").id(currentTask?.hashID ?? ""))
+            MarkdownContent() // mdView: Markdown(currentTask?.content ?? "").id(currentTask?.hashID ?? "")
         }
         .onReceive(container.appstate.userdata.currentTask) { value in
             currentTask = value

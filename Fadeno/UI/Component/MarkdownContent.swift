@@ -1,13 +1,13 @@
 import SwiftUI
 import UIComponent
 
-struct MarkdownContent<V: View>: View {
+struct MarkdownContent: View {
     @EnvironmentObject private var container: DIContainer
     @FocusState private var focus: Bool
     @State private var edit: Bool = false
     @State private var currentTask: Usertask? = nil
     @State private var input = ""
-    @State var mdView: V
+//    @State var mdView: V
     
     var body: some View {
         VStack {
@@ -41,7 +41,7 @@ struct MarkdownContent<V: View>: View {
         .onReceive(container.appstate.userdata.currentTask) { value in
             currentTask = value
             input = currentTask?.content ?? ""
-            mdView = Markdown(currentTask?.content ?? "", .dark).id(currentTask?.hashID ?? "") as! V
+//            mdView = Markdown(currentTask?.content ?? "", .dark).id(currentTask?.hashID ?? "") as! V
         }
     }
 }
@@ -89,8 +89,18 @@ extension MarkdownContent {
             }
             
             if currentTask == nil || !edit {
-                mdView
-                    .transition(.opacity)
+//                mdView
+//                    .transition(.opacity)
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(alignment: .top, spacing: 0) {
+                        Text(input)
+                            .font(.title3)
+                            .transition(.opacity)
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .padding()
             }
         }
     }
@@ -127,7 +137,7 @@ extension MarkdownContent {
 
 struct MarkdownTestView_Previews: PreviewProvider {
     static var previews: some View {
-        MarkdownContent(mdView: Markdown(Usertask.preview.todo.content, .dark).id(Usertask.preview.todo.hashID))
+        MarkdownContent() // mdView: Markdown(Usertask.preview.todo.content, .dark).id(Usertask.preview.todo.hashID)
             .inject(DIContainer.preview)
             .frame(minWidth: 500, minHeight: 1000)
     }

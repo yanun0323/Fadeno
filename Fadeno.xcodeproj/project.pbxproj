@@ -539,7 +539,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fadeno/Resource/Fadeno.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1F8NC;
+				CURRENT_PROJECT_VERSION = 1F9NC;
 				DEVELOPMENT_ASSET_PATHS = "Fadeno/Resource Fadeno/Resource/Assets.xcassets Fadeno/Resource/en.lproj/Localizable.strings";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -563,7 +563,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 0.0.8;
+				MARKETING_VERSION = 0.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanunyang.Fadeno;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -580,7 +580,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fadeno/Resource/Fadeno.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1F8NC;
+				CURRENT_PROJECT_VERSION = 1F9NC;
 				DEVELOPMENT_ASSET_PATHS = "Fadeno/Resource Fadeno/Resource/Assets.xcassets Fadeno/Resource/en.lproj/Localizable.strings";
 				DEVELOPMENT_TEAM = Y366CJ66L6;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
@@ -604,7 +604,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				MARKETING_VERSION = 0.0.8;
+				MARKETING_VERSION = 0.0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanunyang.Fadeno;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
